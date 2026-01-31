@@ -1,0 +1,58 @@
+{
+  "ir_version": "1.0",
+  "project": "PipelineConductor",
+  "repository": "https://github.com/grokify/pipelineconductor",
+  "versioning": "semver",
+  "commit_convention": "conventional",
+  "maintainers": ["grokify"],
+  "releases": [
+    {
+      "version": "v0.1.0",
+      "date": "2026-01-28",
+      "highlights": [
+        { "description": "Multi-org GitHub repository scanning with Cedar policy-as-code evaluation" },
+        { "description": "Four output formats (JSON, Markdown, SARIF, CSV) with GitHub Security integration" },
+        { "description": "Built-in rate limiting with exponential backoff for large-scale scans" }
+      ],
+      "added": [
+        { "description": "CLI with `scan`, `validate`, and `version` commands using Cobra framework" },
+        { "description": "GitHub collector for repository, workflow, and branch protection data" },
+        { "description": "Cedar policy engine with support for custom and built-in policies" },
+        { "description": "Built-in policies: `require-workflow`, `require-tests`, `go-versions`" },
+        { "description": "Profile system with three built-in profiles: `default`, `modern`, `legacy`" },
+        { "description": "JSON report format with compliance summary and per-repo details" },
+        { "description": "Markdown report format with status icons and severity indicators" },
+        { "description": "SARIF 2.1.0 report format for GitHub Security tab integration" },
+        { "description": "CSV report format for spreadsheet analysis" },
+        { "description": "Repository filtering by language, topics, visibility, archived/fork status" },
+        { "description": "Policy validation command with syntax checking" },
+        { "description": "Rate limiting with automatic retry, exponential backoff, and GitHub `X-RateLimit-*` header support" },
+        { "description": "Example Cedar policies for Go projects (merge, versions, matrix, dependencies, reusable-workflow)" }
+      ],
+      "documentation": [
+        { "description": "MkDocs documentation site with Material theme (21 pages)" },
+        { "description": "CLI reference for scan, validate, and configuration" },
+        { "description": "Cedar policy syntax guide and writing policies tutorial" },
+        { "description": "Profile system documentation with customization guide" },
+        { "description": "GitHub Actions integration guide with workflow examples" },
+        { "description": "SARIF integration guide for GitHub Security tab" },
+        { "description": "Contributing guide and development roadmap" }
+      ],
+      "tests": [
+        { "description": "Unit tests for policy engine (5 tests)" },
+        { "description": "Unit tests for profile manager (8 tests)" },
+        { "description": "Unit tests for report generation (8 tests)" },
+        { "description": "Unit tests for repository filtering (12 tests)" },
+        { "description": "Unit tests for workflow parsing (8 tests)" },
+        { "description": "Unit tests for result handling (9 tests)" }
+      ],
+      "dependencies": [
+        { "description": "`github.com/cedar-policy/cedar-go` v1.4.0 for policy evaluation" },
+        { "description": "`github.com/google/go-github/v82` for GitHub API" },
+        { "description": "`github.com/grokify/mogo` for HTTP retry transport" },
+        { "description": "`github.com/spf13/cobra` for CLI framework" },
+        { "description": "`github.com/spf13/viper` for configuration management" }
+      ]
+    }
+  ]
+}

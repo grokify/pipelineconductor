@@ -1,0 +1,81 @@
+site_name: PipelineConductor
+site_description: Orchestrate and harmonize multi-repo CI/CD pipelines with policy-driven automation
+site_url: https://grokify.github.io/pipelineconductor/
+repo_url: https://github.com/grokify/pipelineconductor
+repo_name: grokify/pipelineconductor
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Installation: installation.md
+      - Quick Start: quickstart.md
+  - CLI Reference:
+      - Overview: cli/overview.md
+      - scan: cli/scan.md
+      - validate: cli/validate.md
+      - Configuration: cli/config.md
+  - Policies:
+      - Overview: policies/overview.md
+      - Cedar Syntax: policies/cedar-syntax.md
+      - Built-in Policies: policies/builtin.md
+      - Writing Policies: policies/writing.md
+      - Examples: policies/examples.md
+  - Profiles:
+      - Overview: profiles/overview.md
+      - Built-in Profiles: profiles/builtin.md
+      - Custom Profiles: profiles/custom.md
+  - Reports:
+      - Output Formats: reports/formats.md
+      - SARIF Integration: reports/sarif.md
+  - Integration:
+      - GitHub Actions: integration/github-actions.md
+      - CI/CD Workflows: integration/workflows.md
+  - Development:
+      - Contributing: contributing.md
+      - Roadmap: roadmap.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/grokify/pipelineconductor
