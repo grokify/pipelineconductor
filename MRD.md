@@ -159,14 +159,14 @@ Decouple pipeline logic from individual repos. Central CI pipeline runs complian
 
 ### Enterprise Practice Summary
 
-| Practice | What It Solves |
-|----------|----------------|
-| Centralized templates | Less duplication, more consistency |
-| Platform team ownership | Single point of truth, better governance |
-| Governance gates | Pre-deployment compliance enforcement |
-| Compliance auditing | Org-wide visibility into pipeline health |
-| Custom enforcement scripts | Tailored policy checks |
-| Central workflow execution | Standardized builds across repos |
+| Practice | What It Solves | Limitations |
+|----------|----------------|-------------|
+| Centralized templates | Less duplication, more consistency | No enforcement mechanism, teams can still deviate, no drift detection |
+| Platform team ownership | Single point of truth, better governance | Doesn't scale, becomes bottleneck, requires manual review |
+| Governance gates | Pre-deployment compliance enforcement | Vendor-specific, only enforces at merge time, no remediation |
+| Compliance auditing | Org-wide visibility into pipeline health | Point-in-time snapshots, manual process, expensive, no automated fixes |
+| Custom enforcement scripts | Tailored policy checks | Fragmented, hard to maintain, not reusable across organizations |
+| Central workflow execution | Standardized builds across repos | Complex to implement, limited adoption, high setup cost |
 
 ## Customer Pain Points
 
