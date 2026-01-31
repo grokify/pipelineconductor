@@ -8,50 +8,65 @@
   "releases": [
     {
       "version": "v0.1.0",
-      "date": "2026-01-28",
+      "date": "2026-01-31",
       "highlights": [
         { "description": "Multi-org GitHub repository scanning with Cedar policy-as-code evaluation" },
         { "description": "Four output formats (JSON, Markdown, SARIF, CSV) with GitHub Security integration" },
         { "description": "Built-in rate limiting with exponential backoff for large-scale scans" }
       ],
       "added": [
-        { "description": "CLI with `scan`, `validate`, and `version` commands using Cobra framework" },
-        { "description": "GitHub collector for repository, workflow, and branch protection data" },
-        { "description": "Cedar policy engine with support for custom and built-in policies" },
-        { "description": "Built-in policies: `require-workflow`, `require-tests`, `go-versions`" },
-        { "description": "Profile system with three built-in profiles: `default`, `modern`, `legacy`" },
-        { "description": "JSON report format with compliance summary and per-repo details" },
-        { "description": "Markdown report format with status icons and severity indicators" },
-        { "description": "SARIF 2.1.0 report format for GitHub Security tab integration" },
-        { "description": "CSV report format for spreadsheet analysis" },
-        { "description": "Repository filtering by language, topics, visibility, archived/fork status" },
-        { "description": "Policy validation command with syntax checking" },
-        { "description": "Rate limiting with automatic retry, exponential backoff, and GitHub `X-RateLimit-*` header support" },
-        { "description": "Example Cedar policies for Go projects (merge, versions, matrix, dependencies, reusable-workflow)" }
+        { "description": "CLI with `scan`, `validate`, and `version` commands using Cobra framework", "commit": "20f17d1" },
+        { "description": "GitHub collector for repository, workflow, and branch protection data", "commit": "20f17d1" },
+        { "description": "Cedar policy engine with support for custom and built-in policies", "commit": "20f17d1" },
+        { "description": "Built-in policies: `require-workflow`, `require-tests`, `go-versions`", "commit": "3c463ac" },
+        { "description": "Profile system with three built-in profiles: `default`, `modern`, `legacy`", "commit": "3c463ac" },
+        { "description": "JSON report format with compliance summary and per-repo details", "commit": "20f17d1" },
+        { "description": "Markdown report format with status icons and severity indicators", "commit": "20f17d1" },
+        { "description": "SARIF 2.1.0 report format for GitHub Security tab integration", "commit": "20f17d1" },
+        { "description": "CSV report format for spreadsheet analysis", "commit": "20f17d1" },
+        { "description": "Repository filtering by language, topics, visibility, archived/fork status", "commit": "20f17d1" },
+        { "description": "Policy validation command with syntax checking", "commit": "20f17d1" },
+        { "description": "Rate limiting with automatic retry, exponential backoff, and GitHub `X-RateLimit-*` header support", "commit": "20f17d1" },
+        { "description": "Example Cedar policies for Go projects (merge, versions, matrix, dependencies, reusable-workflow)", "commit": "3c463ac" }
+      ],
+      "fixed": [
+        { "description": "Windows CI failures due to PowerShell misinterpreting `./...` path", "commit": "92e008c" }
       ],
       "documentation": [
-        { "description": "MkDocs documentation site with Material theme (21 pages)" },
-        { "description": "CLI reference for scan, validate, and configuration" },
-        { "description": "Cedar policy syntax guide and writing policies tutorial" },
-        { "description": "Profile system documentation with customization guide" },
-        { "description": "GitHub Actions integration guide with workflow examples" },
-        { "description": "SARIF integration guide for GitHub Security tab" },
-        { "description": "Contributing guide and development roadmap" }
+        { "description": "MkDocs documentation site with Material theme (21 pages)", "commit": "695fd73" },
+        { "description": "CLI reference for scan, validate, and configuration", "commit": "695fd73" },
+        { "description": "Cedar policy syntax guide and writing policies tutorial", "commit": "695fd73" },
+        { "description": "Profile system documentation with customization guide", "commit": "695fd73" },
+        { "description": "GitHub Actions integration guide with workflow examples", "commit": "695fd73" },
+        { "description": "SARIF integration guide for GitHub Security tab", "commit": "695fd73" },
+        { "description": "Contributing guide and development roadmap", "commit": "695fd73" },
+        { "description": "Release notes for v0.1.0", "commit": "872a9d8" },
+        { "description": "Releases section added to MkDocs navigation", "commit": "5988e73" },
+        { "description": "Limitations column added to Enterprise Practice Summary in MRD", "commit": "e3185c9" },
+        { "description": "README shields for CI, Go Report Card, and license", "commit": "300c38e" }
       ],
       "tests": [
-        { "description": "Unit tests for policy engine (5 tests)" },
-        { "description": "Unit tests for profile manager (8 tests)" },
-        { "description": "Unit tests for report generation (8 tests)" },
-        { "description": "Unit tests for repository filtering (12 tests)" },
-        { "description": "Unit tests for workflow parsing (8 tests)" },
-        { "description": "Unit tests for result handling (9 tests)" }
+        { "description": "Unit tests for policy engine (5 tests)", "commit": "20f17d1" },
+        { "description": "Unit tests for profile manager (8 tests)", "commit": "20f17d1" },
+        { "description": "Unit tests for report generation (8 tests)", "commit": "20f17d1" },
+        { "description": "Unit tests for repository filtering (12 tests)", "commit": "20f17d1" },
+        { "description": "Unit tests for workflow parsing (8 tests)", "commit": "20f17d1" },
+        { "description": "Unit tests for result handling (9 tests)", "commit": "20f17d1" }
       ],
       "dependencies": [
-        { "description": "`github.com/cedar-policy/cedar-go` v1.4.0 for policy evaluation" },
-        { "description": "`github.com/google/go-github/v82` for GitHub API" },
-        { "description": "`github.com/grokify/mogo` for HTTP retry transport" },
-        { "description": "`github.com/spf13/cobra` for CLI framework" },
-        { "description": "`github.com/spf13/viper` for configuration management" }
+        { "description": "`github.com/cedar-policy/cedar-go` v1.4.1 for policy evaluation", "commit": "202497d" },
+        { "description": "`github.com/google/go-github/v82` for GitHub API", "commit": "202497d" },
+        { "description": "`github.com/grokify/gogithub` v0.7.0 for GitHub API helpers", "commit": "202497d" },
+        { "description": "`github.com/grokify/mogo` v0.72.7 for HTTP retry transport", "commit": "202497d" },
+        { "description": "`github.com/spf13/cobra` v1.10.2 for CLI framework", "commit": "202497d" },
+        { "description": "`github.com/spf13/viper` v1.21.0 for configuration management", "commit": "202497d" }
+      ],
+      "chores": [
+        { "description": "Initial project setup with go.mod, LICENSE, and CI workflow", "commit": "202497d" },
+        { "description": "Bump actions/checkout from 4 to 6", "commit": "e85adbb" },
+        { "description": "Bump actions/setup-go from 5 to 6", "commit": "73a874f" },
+        { "description": "Bump golangci/golangci-lint-action from 6 to 9", "commit": "123ac3b" },
+        { "description": "Bump codecov/codecov-action from 4 to 5", "commit": "b1c6b6f" }
       ]
     }
   ]
