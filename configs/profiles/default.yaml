@@ -1,0 +1,26 @@
+name: default
+description: Standard Go CI configuration for active projects
+
+go:
+  versions:
+    - "1.24"
+    - "1.25"
+
+os:
+  - ubuntu-latest
+  - macos-latest
+  - windows-latest
+
+checks:
+  required:
+    - test
+    - lint
+    - build
+
+lint:
+  enabled: true
+  tool: golangci-lint
+
+test:
+  coverage: true
+  race: true

@@ -1,0 +1,24 @@
+name: modern
+description: Modern Go CI for projects using latest Go features
+
+go:
+  versions:
+    - "1.25"
+
+os:
+  - ubuntu-latest
+  - macos-latest
+
+checks:
+  required:
+    - test
+    - lint
+    - build
+
+lint:
+  enabled: true
+  tool: golangci-lint
+
+test:
+  coverage: true
+  race: true

@@ -1,0 +1,21 @@
+name: legacy
+description: Legacy Go CI for older projects requiring Go 1.12-1.18
+
+go:
+  versions:
+    - "1.12"
+
+os:
+  - ubuntu-latest
+
+checks:
+  required:
+    - test
+    - build
+
+lint:
+  enabled: false  # Modern linters don't support old Go
+
+test:
+  coverage: false
+  race: false  # Race detector unreliable on old Go
