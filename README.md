@@ -1,8 +1,10 @@
 # PipelineConductor
 
-[![CI](https://github.com/grokify/pipelineconductor/workflows/CI/badge.svg)](https://github.com/grokify/pipelineconductor/actions)
-[![Go Report Card](https://goreportcard.com/badge/github.com/grokify/pipelineconductor)](https://goreportcard.com/report/github.com/grokify/pipelineconductor)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Build Status][build-status-svg]][build-status-url]
+[![Lint Status][lint-status-svg]][lint-status-url]
+[![Go Report Card][goreport-svg]][goreport-url]
+[![Docs][docs-godoc-svg]][docs-godoc-url]
+[![License][license-svg]][license-url]
 
 **Orchestrate and harmonize multi-repo CI/CD pipelines with policy-driven automation.**
 
@@ -107,19 +109,19 @@ PipelineConductor uses profiles to define expected CI/CD configurations:
 ## Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                      PipelineConductor CLI                       │
-├─────────────────────────────────────────────────────────────────┤
+┌────────────────────────────────────────────────────────────────┐
+│                      PipelineConductor CLI                     │
+├────────────────────────────────────────────────────────────────┤
 │  ┌──────────────┐  ┌──────────────┐  ┌──────────────────────┐  │
 │  │  Collectors  │  │    Policy    │  │     Remediator       │  │
 │  │ - GitHub API │  │    Engine    │  │ - PR Generator       │  │
 │  │ - GitLab API │  │ - Cedar      │  │ - Patch Builder      │  │
 │  └──────────────┘  └──────────────┘  └──────────────────────┘  │
-│                            │                                     │
-│                    ┌───────┴────────┐                           │
-│                    │   pkg/model    │                           │
-│                    └────────────────┘                           │
-└─────────────────────────────────────────────────────────────────┘
+│                            │                                   │
+│                    ┌───────┴────────┐                          │
+│                    │   pkg/model    │                          │
+│                    └────────────────┘                          │
+└────────────────────────────────────────────────────────────────┘
 ```
 
 ## Contributing
@@ -129,3 +131,14 @@ Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for gui
 ## License
 
 MIT License - see [LICENSE](LICENSE) for details.
+
+ [build-status-svg]: https://github.com/grokify/pipelineconductor/actions/workflows/ci.yaml/badge.svg?branch=main
+ [build-status-url]: https://github.com/grokify/pipelineconductor/actions/workflows/ci.yaml
+ [lint-status-svg]: https://github.com/grokify/pipelineconductor/actions/workflows/lint.yaml/badge.svg?branch=main
+ [lint-status-url]: https://github.com/grokify/pipelineconductor/actions/workflows/lint.yaml
+ [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/pipelineconductor
+ [goreport-url]: https://goreportcard.com/report/github.com/grokify/pipelineconductor
+ [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/grokify/pipelineconductor
+ [docs-godoc-url]: https://pkg.go.dev/github.com/grokify/pipelineconductor
+ [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
+ [license-url]: https://github.com/grokify/pipelineconductor/blob/master/LICENSE
