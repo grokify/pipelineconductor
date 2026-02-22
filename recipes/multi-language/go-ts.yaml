@@ -1,0 +1,27 @@
+# Multi-language recipe: Go + TypeScript
+#
+# For repos with both Go and TypeScript code, create separate workflow files
+# for each language. This allows path-based filtering so only relevant CI
+# runs when files change.
+#
+# Required files in .github/workflows/:
+#   - go-ci.yaml    (copy from recipes/go/go-ci.yaml)
+#   - go-lint.yaml  (copy from recipes/go/go-lint.yaml)
+#   - ts-ci.yaml    (copy from recipes/ts/ts-ci.yaml)
+#   - ts-lint.yaml  (copy from recipes/ts/ts-lint.yaml)
+#
+# For repos with TypeScript in a subdirectory (e.g., ts/), add working-directory:
+#
+#   jobs:
+#     ci:
+#       uses: grokify/.github/.github/workflows/ts-ci.yaml@main
+#       with:
+#         working-directory: 'ts'
+#
+# Example: github.com/grokify/echartify
+#   - Go code in root (chartir/, schema/)
+#   - TypeScript in ts/ subdirectory
+#
+# Pipelineconductor detection:
+#   - Has go-ci.yaml AND ts-ci.yaml = multi-language repo
+#   - Query: repos with both Go and TypeScript
