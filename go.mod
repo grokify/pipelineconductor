@@ -3,7 +3,7 @@ module github.com/grokify/pipelineconductor
 go 1.25.0
 
 require (
-	github.com/cedar-policy/cedar-go v1.5.2
+	github.com/cedar-policy/cedar-go v1.6.0
 	github.com/google/go-github/v82 v82.0.0
 	github.com/grokify/gogithub v0.9.1
 	github.com/grokify/mogo v0.74.0
