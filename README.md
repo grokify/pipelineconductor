@@ -45,6 +45,7 @@ PipelineConductor is a tool for managing CI/CD pipeline consistency across hundr
 - 📁 **Local filesystem scanning**: Scan repositories without GitHub API
 - 🤖 **GitHub Action**: Reusable action for CI/CD integration
 - 🔧 **Automated remediation**: Generate missing workflows from templates
+- 📈 **Dashboard generation**: Dashforge integration for visual compliance dashboards
 
 ## Installation
 

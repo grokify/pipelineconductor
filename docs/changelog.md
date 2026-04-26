@@ -12,6 +12,7 @@ This page provides a summary of releases. For detailed changes with commit links
 - Local filesystem collector for scanning without GitHub API
 - GitHub Action for CI/CD integration
 - Automated workflow remediation with template generation
+- Dashforge dashboard generation for visual compliance reporting
 
 **Breaking Changes:**
 

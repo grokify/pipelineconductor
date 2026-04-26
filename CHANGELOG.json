@@ -26,7 +26,8 @@
         { "description": "Cedar policy examples for workflow compliance (strict, gradual, base)", "commit": "1db9c44" },
         { "description": "Workflow generator with templates for Go CI, lint, and CodeQL", "commit": "3a3d3c9" },
         { "description": "Compliance context in policy evaluation (`ComplianceContext`)", "commit": "0b49253" },
-        { "description": "Multi-source repository collection (`ListUserRepos`, `ListReposMultiSource`)", "commit": "0b49253" }
+        { "description": "Multi-source repository collection (`ListUserRepos`, `ListReposMultiSource`)", "commit": "0b49253" },
+        { "description": "Dashforge dashboard generation for compliance results with metrics, charts, and tables", "commit": "4d59037" }
       ],
       "changed": [
         { "description": "**BREAKING**: Module path migrated from `github.com/grokify/pipelineconductor` to `github.com/plexusone/pipelineconductor`", "commit": "5757df5" }
@@ -39,14 +40,17 @@
         { "description": "PlexusOne unified MkDocs theme with dark mode default", "commit": "90864b3" },
         { "description": "README icons added to Features section", "commit": "f686343" },
         { "description": "README shields updated", "commit": "b8c045e" },
-        { "description": "Release notes for v0.2.0", "commit": "56139e9" }
+        { "description": "Release notes for v0.2.0", "commit": "56139e9" },
+        { "description": "README updated with v0.2.0 features and check command examples", "commit": "ad086d1" },
+        { "description": "Changelog page added to MkDocs documentation", "commit": "ad086d1" }
       ],
       "dependencies": [
         { "description": "`github.com/google/go-github/v84` upgraded from v82 for gogithub compatibility", "commit": "43fd83e" },
         { "description": "`github.com/cedar-policy/cedar-go` v1.6.0 (from v1.4.1)", "commit": "9d51d57" },
         { "description": "`github.com/grokify/gogithub` v0.12.1 (from v0.7.0)", "commit": "865170a" },
         { "description": "`github.com/grokify/mogo` v0.74.2 (from v0.72.7)", "commit": "d4a6307" },
-        { "description": "`golang.org/x/oauth2` v0.36.0", "commit": "0d4b015" }
+        { "description": "`golang.org/x/oauth2` v0.36.0", "commit": "0d4b015" },
+        { "description": "`github.com/plexusone/dashforge` v0.1.0 for dashboard generation", "commit": "4d59037" }
       ],
       "internal": [
         { "description": "CI workflows updated to shared workflows", "commit": "22dd50a" },
