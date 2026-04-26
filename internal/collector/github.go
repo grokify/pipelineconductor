@@ -15,7 +15,7 @@ import (
 	"github.com/grokify/mogo/net/http/retryhttp"
 	"golang.org/x/oauth2"
 
-	"github.com/grokify/pipelineconductor/pkg/model"
+	"github.com/plexusone/pipelineconductor/pkg/model"
 )
 
 // GitHubCollector collects repository data from GitHub.
@@ -159,6 +159,86 @@ func (c *GitHubCollector) ListRepos(ctx context.Context, orgs []string, filter m
 			return nil, fmt.Errorf("listing repos for org %s: %w", org, err)
 		}
 		repos = append(repos, orgRepos...)
+	}
+
+	return repos, nil
+}
+
+// ListUserRepos returns public repositories for the specified users.
+func (c *GitHubCollector) ListUserRepos(ctx context.Context, users []string, filter model.RepoFilter) ([]model.Repo, error) {
+	var repos []model.Repo
+
+	for _, user := range users {
+		userRepos, err := c.listUserRepos(ctx, user, filter)
+		if err != nil {
+			return nil, fmt.Errorf("listing repos for user %s: %w", user, err)
+		}
+		repos = append(repos, userRepos...)
+	}
+
+	return repos, nil
+}
+
+// ListReposMultiSource returns repositories from both orgs and users.
+func (c *GitHubCollector) ListReposMultiSource(ctx context.Context, orgs, users []string, filter model.RepoFilter) ([]model.Repo, error) {
+	var allRepos []model.Repo
+
+	// Collect from organizations
+	if len(orgs) > 0 {
+		orgRepos, err := c.ListRepos(ctx, orgs, filter)
+		if err != nil {
+			return nil, err
+		}
+		allRepos = append(allRepos, orgRepos...)
+	}
+
+	// Collect from users
+	if len(users) > 0 {
+		userRepos, err := c.ListUserRepos(ctx, users, filter)
+		if err != nil {
+			return nil, err
+		}
+		allRepos = append(allRepos, userRepos...)
+	}
+
+	// Deduplicate by full name
+	seen := make(map[string]bool)
+	var dedupedRepos []model.Repo
+	for _, r := range allRepos {
+		if !seen[r.FullName] {
+			seen[r.FullName] = true
+			dedupedRepos = append(dedupedRepos, r)
+		}
+	}
+
+	return dedupedRepos, nil
+}
+
+func (c *GitHubCollector) listUserRepos(ctx context.Context, user string, filter model.RepoFilter) ([]model.Repo, error) {
+	opts := &github.RepositoryListByUserOptions{
+		Type:        "owner",
+		Sort:        "updated",
+		ListOptions: github.ListOptions{PerPage: 100},
+	}
+
+	var repos []model.Repo
+	for {
+		ghRepos, resp, err := c.client.Repositories.ListByUser(ctx, user, opts)
+		if err != nil {
+			return nil, err
+		}
+
+		for _, gr := range ghRepos {
+			r := convertGitHubRepo(gr)
+			if r.Matches(filter) {
+				repos = append(repos, r)
+			}
+		}
+
+		if resp.NextPage == 0 {
+			break
+		}
+		opts.Page = resp.NextPage
 	}
 
 	return repos, nil

@@ -20,6 +20,7 @@ type Repo struct {
 	PushedAt        time.Time `json:"pushedAt"`
 	HTMLURL         string    `json:"htmlUrl"`
 	CloneURL        string    `json:"cloneUrl"`
+	LocalPath       string    `json:"localPath,omitempty"` // Path on local filesystem (for local scanning)
 }
 
 // RepoFilter defines criteria for filtering repositories.

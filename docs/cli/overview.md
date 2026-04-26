@@ -6,7 +6,10 @@ PipelineConductor provides a command-line interface for scanning repositories an
 
 | Command | Description |
 |---------|-------------|
-| `scan` | Scan repositories for compliance |
+| `scan` | Scan repositories for policy compliance |
+| `check` | Check workflow compliance against reference repo |
+| `remediate` | Generate compliant workflow files |
+| `apply` | Apply workflows with git commit/push/PR |
 | `validate` | Validate Cedar policy files |
 | `version` | Print version information |
 

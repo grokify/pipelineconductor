@@ -1,7 +1,9 @@
 package policy
 
 import (
-	"github.com/grokify/pipelineconductor/pkg/model"
+	"slices"
+
+	"github.com/plexusone/pipelineconductor/pkg/model"
 )
 
 // ContextBuilder builds a PolicyContext from repository data.
@@ -94,15 +96,7 @@ func (b *ContextBuilder) buildGoContext(repo model.Repo, workflows []model.Workf
 	ctx := model.GoContext{}
 
 	// Check if this is a Go project
-	isGo := false
-	for _, lang := range repo.Languages {
-		if lang == "Go" {
-			isGo = true
-			break
-		}
-	}
-
-	if !isGo {
+	if !slices.Contains(repo.Languages, "Go") {
 		return ctx
 	}
 
@@ -145,4 +139,63 @@ func (b *ContextBuilder) BuildFromRepoResult(result *model.RepoResult, workflows
 func (b *ContextBuilder) WithProfile(profile *model.Profile) *ContextBuilder {
 	b.profile = profile
 	return b
+}
+
+// BuildFromComplianceResult creates a PolicyContext from a compliance check result.
+func (b *ContextBuilder) BuildFromComplianceResult(result model.RepoCheckResult, workflows []model.Workflow, refRepo string) *model.PolicyContext {
+	// Build base context from repo
+	repo := model.Repo{
+		Owner:     result.Owner,
+		Name:      result.Name,
+		FullName:  result.FullName,
+		Languages: result.Languages,
+		HTMLURL:   result.HTMLURL,
+	}
+
+	ctx := b.Build(repo, workflows, nil)
+
+	// Add compliance context
+	ctx.Compliance = b.buildComplianceContext(result, refRepo)
+
+	return ctx
+}
+
+// buildComplianceContext creates a ComplianceContext from a RepoCheckResult.
+func (b *ContextBuilder) buildComplianceContext(result model.RepoCheckResult, refRepo string) model.ComplianceContext {
+	compliance := model.ComplianceContext{
+		Level:     result.ComplianceLevel,
+		Compliant: result.Compliant,
+		RefRepo:   refRepo,
+	}
+
+	// Count missing workflows
+	compliance.MissingWorkflowCount = len(result.Missing)
+	for _, m := range result.Missing {
+		compliance.MissingWorkflows = append(compliance.MissingWorkflows, m.WorkflowType)
+	}
+
+	// Count match types and check for filename mismatches
+	totalRequired := len(result.RequiredWorkflows)
+	for _, wf := range result.RequiredWorkflows {
+		switch wf.MatchType {
+		case model.MatchTypeExact:
+			compliance.ExactMatchCount++
+			if wf.UsesReusable {
+				compliance.UsesReusableWorkflows = true
+			}
+		case model.MatchTypeEquivalent:
+			compliance.EquivalentMatchCount++
+		}
+		if wf.FilenameMismatch {
+			compliance.HasFilenameMismatch = true
+		}
+	}
+
+	// Calculate compliance rate
+	if totalRequired > 0 {
+		matchedCount := compliance.ExactMatchCount + compliance.EquivalentMatchCount
+		compliance.ComplianceRate = float64(matchedCount) / float64(totalRequired) * 100
+	}
+
+	return compliance
 }

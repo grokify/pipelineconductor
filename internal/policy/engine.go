@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/cedar-policy/cedar-go"
-	"github.com/grokify/pipelineconductor/pkg/model"
+	"github.com/plexusone/pipelineconductor/pkg/model"
 )
 
 // Action constants for CI/CD policy evaluation.
@@ -131,6 +131,18 @@ func (e *Engine) buildRequest(ctx *model.PolicyContext, action string) cedar.Req
 		"requireReviews":                cedar.Boolean(ctx.BranchProtection.RequireReviews),
 		"requireStatusChecks":           cedar.Boolean(ctx.BranchProtection.RequireStatusChecks),
 		"branchProtectionEnforceAdmins": cedar.Boolean(ctx.BranchProtection.EnforceAdmins),
+
+		// Compliance
+		"complianceLevel":       cedar.String(ctx.Compliance.Level),
+		"compliant":             cedar.Boolean(ctx.Compliance.Compliant),
+		"complianceRate":        cedar.Long(int64(ctx.Compliance.ComplianceRate)),
+		"missingWorkflowCount":  cedar.Long(int64(ctx.Compliance.MissingWorkflowCount)),
+		"missingWorkflows":      stringSliceToSet(ctx.Compliance.MissingWorkflows),
+		"hasFilenameMismatch":   cedar.Boolean(ctx.Compliance.HasFilenameMismatch),
+		"usesReusableWorkflows": cedar.Boolean(ctx.Compliance.UsesReusableWorkflows),
+		"exactMatchCount":       cedar.Long(int64(ctx.Compliance.ExactMatchCount)),
+		"equivalentMatchCount":  cedar.Long(int64(ctx.Compliance.EquivalentMatchCount)),
+		"complianceRefRepo":     cedar.String(ctx.Compliance.RefRepo),
 	})
 
 	return cedar.Request{

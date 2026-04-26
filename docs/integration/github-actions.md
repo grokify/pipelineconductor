@@ -2,7 +2,110 @@
 
 Automate compliance scanning with GitHub Actions.
 
-## Basic Workflow
+## Composite Action (Recommended)
+
+PipelineConductor provides a composite action for easy integration:
+
+```yaml
+name: Compliance Check
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compliance:
+    name: Check Workflow Compliance
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check Compliance
+        id: compliance
+        uses: grokify/pipelineconductor@main
+        with:
+          ref-repo: 'myorg/.github'
+          ref-branch: 'main'
+          languages: 'Go'
+          strict: 'false'
+          fail-on-non-compliant: 'false'
+
+      - name: Report Results
+        run: |
+          echo "Compliance Level: ${{ steps.compliance.outputs.compliance-level }}"
+          echo "Compliance Rate: ${{ steps.compliance.outputs.compliance-rate }}%"
+```
+
+### Action Inputs
+
+| Input | Description | Default |
+|-------|-------------|---------|
+| `ref-repo` | Reference workflow repository (owner/repo) | `grokify/.github` |
+| `ref-branch` | Branch in reference repo | `main` |
+| `languages` | Languages to check (comma-separated) | `Go` |
+| `strict` | Require exact reusable workflow usage | `false` |
+| `fail-on-non-compliant` | Fail if any workflows are missing | `false` |
+
+### Action Outputs
+
+| Output | Description |
+|--------|-------------|
+| `compliance-level` | Overall compliance level (full, partial, none) |
+| `compliance-rate` | Compliance rate percentage |
+| `missing-workflows` | JSON array of missing workflows |
+
+### Create Issue for Non-Compliance
+
+```yaml
+- name: Create Issue for Non-Compliance
+  if: steps.compliance.outputs.compliance-level != 'full'
+  uses: actions/github-script@v7
+  with:
+    script: |
+      const missing = JSON.parse('${{ steps.compliance.outputs.missing-workflows }}');
+      if (missing.length === 0) return;
+
+      const body = `## Workflow Compliance Issue
+
+      This repository has non-compliant workflows.
+
+      **Compliance Level:** ${{ steps.compliance.outputs.compliance-level }}
+      **Compliance Rate:** ${{ steps.compliance.outputs.compliance-rate }}%
+
+      ### Missing Workflows
+
+      ${missing.map(m => `- **${m.workflowType}** (${m.severity}): ${m.description}`).join('\n')}
+
+      ### How to Fix
+
+      Run the following command to generate compliant workflows:
+
+      \`\`\`bash
+      pipelineconductor remediate --local . --orgs ${context.repo.owner} --languages Go
+      \`\`\`
+      `;
+
+      await github.rest.issues.create({
+        owner: context.repo.owner,
+        repo: context.repo.repo,
+        title: 'Workflow Compliance: Non-compliant workflows detected',
+        body: body,
+        labels: ['workflow-compliance', 'automation']
+      });
+```
+
+## Basic Workflow (Manual Setup)
 
 Create `.github/workflows/compliance.yml`:
 
@@ -25,7 +128,7 @@ jobs:
           go-version: '1.25'
 
       - name: Install PipelineConductor
-        run: go install github.com/grokify/pipelineconductor/cmd/pipelineconductor@latest
+        run: go install github.com/plexusone/pipelineconductor/cmd/pipelineconductor@latest
 
       - name: Run compliance scan
         env:
@@ -88,7 +191,7 @@ jobs:
           go-version: '1.25'
 
       - name: Install PipelineConductor
-        run: go install github.com/grokify/pipelineconductor/cmd/pipelineconductor@latest
+        run: go install github.com/plexusone/pipelineconductor/cmd/pipelineconductor@latest
 
       - name: Run scan
         env:
@@ -127,7 +230,7 @@ jobs:
           go-version: '1.25'
 
       - name: Install PipelineConductor
-        run: go install github.com/grokify/pipelineconductor/cmd/pipelineconductor@latest
+        run: go install github.com/plexusone/pipelineconductor/cmd/pipelineconductor@latest
 
       - name: Run scans
         env:
@@ -172,7 +275,7 @@ jobs:
           go-version: '1.25'
 
       - name: Install PipelineConductor
-        run: go install github.com/grokify/pipelineconductor/cmd/pipelineconductor@latest
+        run: go install github.com/plexusone/pipelineconductor/cmd/pipelineconductor@latest
 
       - name: Run scan
         id: scan
@@ -233,7 +336,7 @@ jobs:
           go-version: '1.25'
 
       - name: Install PipelineConductor
-        run: go install github.com/grokify/pipelineconductor/cmd/pipelineconductor@latest
+        run: go install github.com/plexusone/pipelineconductor/cmd/pipelineconductor@latest
 
       - name: Run scan
         env:
@@ -271,7 +374,7 @@ steps:
       cache: true
 
   - name: Install PipelineConductor
-    run: go install github.com/grokify/pipelineconductor/cmd/pipelineconductor@latest
+    run: go install github.com/plexusone/pipelineconductor/cmd/pipelineconductor@latest
 ```
 
 ## Scheduled Scans
