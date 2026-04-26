@@ -1,10 +1,32 @@
 # PipelineConductor
 
-[![Build Status][build-status-svg]][build-status-url]
-[![Lint Status][lint-status-svg]][lint-status-url]
+[![Go CI][go-ci-svg]][go-ci-url]
+[![Go Lint][go-lint-svg]][go-lint-url]
+[![Go SAST][go-sast-svg]][go-sast-url]
 [![Go Report Card][goreport-svg]][goreport-url]
 [![Docs][docs-godoc-svg]][docs-godoc-url]
+[![Docs][docs-mkdoc-svg]][docs-mkdoc-url]
+[![Visualization][viz-svg]][viz-url]
 [![License][license-svg]][license-url]
+
+ [go-ci-svg]: https://github.com/plexusone/pipelineconductor/actions/workflows/go-ci.yaml/badge.svg?branch=main
+ [go-ci-url]: https://github.com/plexusone/pipelineconductor/actions/workflows/go-ci.yaml
+ [go-lint-svg]: https://github.com/plexusone/pipelineconductor/actions/workflows/go-lint.yaml/badge.svg?branch=main
+ [go-lint-url]: https://github.com/plexusone/pipelineconductor/actions/workflows/go-lint.yaml
+ [go-sast-svg]: https://github.com/plexusone/pipelineconductor/actions/workflows/go-sast-codeql.yaml/badge.svg?branch=main
+ [go-sast-url]: https://github.com/plexusone/pipelineconductor/actions/workflows/go-sast-codeql.yaml
+ [goreport-svg]: https://goreportcard.com/badge/github.com/plexusone/pipelineconductor
+ [goreport-url]: https://goreportcard.com/report/github.com/plexusone/pipelineconductor
+ [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/plexusone/pipelineconductor
+ [docs-godoc-url]: https://pkg.go.dev/github.com/plexusone/pipelineconductor
+ [docs-mkdoc-svg]: https://img.shields.io/badge/Go-dev%20guide-blue.svg
+ [docs-mkdoc-url]: https://plexusone.dev/pipelineconductor
+ [viz-svg]: https://img.shields.io/badge/Go-visualizaton-blue.svg
+ [viz-url]: https://mango-dune-07a8b7110.1.azurestaticapps.net/?repo=plexusone%2Fpipelineconductor
+ [loc-svg]: https://tokei.rs/b1/github/plexusone/pipelineconductor
+ [repo-url]: https://github.com/plexusone/pipelineconductor
+ [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
+ [license-url]: https://github.com/plexusone/pipelineconductor/blob/main/LICENSE
 
 **Orchestrate and harmonize multi-repo CI/CD pipelines with policy-driven automation.**
 
@@ -131,14 +153,3 @@ Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for gui
 ## License
 
 MIT License - see [LICENSE](LICENSE) for details.
-
- [build-status-svg]: https://github.com/plexusone/pipelineconductor/actions/workflows/ci.yaml/badge.svg?branch=main
- [build-status-url]: https://github.com/plexusone/pipelineconductor/actions/workflows/ci.yaml
- [lint-status-svg]: https://github.com/plexusone/pipelineconductor/actions/workflows/lint.yaml/badge.svg?branch=main
- [lint-status-url]: https://github.com/plexusone/pipelineconductor/actions/workflows/lint.yaml
- [goreport-svg]: https://goreportcard.com/badge/github.com/plexusone/pipelineconductor
- [goreport-url]: https://goreportcard.com/report/github.com/plexusone/pipelineconductor
- [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/plexusone/pipelineconductor
- [docs-godoc-url]: https://pkg.go.dev/github.com/plexusone/pipelineconductor
- [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
- [license-url]: https://github.com/plexusone/pipelineconductor/blob/master/LICENSE
