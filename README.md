@@ -19,27 +19,32 @@
  [goreport-url]: https://goreportcard.com/report/github.com/plexusone/pipelineconductor
  [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/plexusone/pipelineconductor
  [docs-godoc-url]: https://pkg.go.dev/github.com/plexusone/pipelineconductor
- [docs-mkdoc-svg]: https://img.shields.io/badge/Go-dev%20guide-blue.svg
- [docs-mkdoc-url]: https://plexusone.dev/pipelineconductor
- [viz-svg]: https://img.shields.io/badge/Go-visualizaton-blue.svg
+ [docs-mkdoc-svg]: https://img.shields.io/badge/docs-guide-blue.svg
+ [docs-mkdoc-url]: https://plexusone.github.io/pipelineconductor
+ [viz-svg]: https://img.shields.io/badge/repo-visualization-blue.svg
  [viz-url]: https://mango-dune-07a8b7110.1.azurestaticapps.net/?repo=plexusone%2Fpipelineconductor
- [loc-svg]: https://tokei.rs/b1/github/plexusone/pipelineconductor
- [repo-url]: https://github.com/plexusone/pipelineconductor
  [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
  [license-url]: https://github.com/plexusone/pipelineconductor/blob/main/LICENSE
 
 **Orchestrate and harmonize multi-repo CI/CD pipelines with policy-driven automation.**
 
-PipelineConductor is a tool for managing CI/CD pipeline consistency across hundreds of repositories. It scans repositories, evaluates them against Cedar policies, generates compliance reports, and can automatically remediate violations via pull requests.
+PipelineConductor is a tool for managing CI/CD pipeline consistency across hundreds of repositories. It scans repositories, evaluates them against Cedar policies, generates compliance reports, and can automatically remediate violations.
 
 ## Features
+
+### Core
 
 - 🏢 **Multi-org scanning**: Scan repositories across multiple GitHub organizations
 - 📜 **Policy-as-code**: Define CI/CD policies using [Cedar](https://www.cedarpolicy.com/)
 - ⚙️ **Profile system**: Named configurations for different project types (default, modern, legacy)
-- 📊 **Compliance reports**: Generate JSON, SARIF, Markdown, and CSV reports
-- 🔧 **Automated remediation**: Create PRs to fix policy violations
-- ⚡ **API-first**: Efficient GitHub API usage with selective git inspection
+- 📊 **Compliance reports**: Generate JSON, SARIF, Markdown, CSV, and HTML reports
+
+### Compliance Checking (v0.2.0)
+
+- ✅ **Reference repo matching**: Check workflows against a reference repository
+- 📁 **Local filesystem scanning**: Scan repositories without GitHub API
+- 🤖 **GitHub Action**: Reusable action for CI/CD integration
+- 🔧 **Automated remediation**: Generate missing workflows from templates
 
 ## Installation
 
@@ -63,23 +68,23 @@ go build -o pipelineconductor ./cmd/pipelineconductor
 export GITHUB_TOKEN=ghp_your_token_here
 ```
 
-2. Scan your organization:
+2. Scan your organization for policy compliance:
 
 ```bash
 pipelineconductor scan --orgs myorg --output report.json
 ```
 
-3. View the compliance report:
+3. Check workflow compliance against a reference repository:
 
 ```bash
-pipelineconductor scan --orgs myorg --format markdown
+pipelineconductor check --orgs myorg --ref-repo plexusone/.github
 ```
 
 ## Usage
 
 ### Scan Command
 
-Scan repositories for compliance:
+Scan repositories for policy compliance:
 
 ```bash
 # Basic scan
@@ -91,11 +96,26 @@ pipelineconductor scan --orgs org1,org2,org3
 # Filter by language
 pipelineconductor scan --orgs myorg --languages Go,Python
 
-# Include archived repos
-pipelineconductor scan --orgs myorg --include-archived
-
 # Output to file
 pipelineconductor scan --orgs myorg --output report.json --format json
+```
+
+### Check Command
+
+Check workflow compliance against a reference repository:
+
+```bash
+# Check organization repos against reference
+pipelineconductor check --orgs myorg --ref-repo plexusone/.github
+
+# Check with strict mode (require exact reusable workflow matches)
+pipelineconductor check --orgs myorg --ref-repo plexusone/.github --strict
+
+# Check local repositories
+pipelineconductor check --local ~/projects --ref-repo plexusone/.github
+
+# Output as HTML report
+pipelineconductor check --orgs myorg --ref-repo plexusone/.github -f html -o report.html
 ```
 
 ### Configuration File
@@ -111,6 +131,19 @@ profile: default
 verbose: true
 ```
 
+## GitHub Action
+
+Use PipelineConductor in your CI/CD pipeline:
+
+```yaml
+- name: Check Compliance
+  uses: plexusone/pipelineconductor@v0.2.0
+  with:
+    ref-repo: 'plexusone/.github'
+    orgs: 'myorg'
+    format: 'markdown'
+```
+
 ## Profiles
 
 PipelineConductor uses profiles to define expected CI/CD configurations:
@@ -123,27 +156,29 @@ PipelineConductor uses profiles to define expected CI/CD configurations:
 
 ## Documentation
 
-- [PRD.md](PRD.md) - Product Requirements Document
-- [TRD.md](TRD.md) - Technical Requirements Document
-- [MRD.md](MRD.md) - Market Requirements Document
-- [ROADMAP.md](ROADMAP.md) - Implementation Roadmap
+Full documentation is available at **[plexusone.github.io/pipelineconductor](https://plexusone.github.io/pipelineconductor)**
+
+- [CLI Reference](https://plexusone.github.io/pipelineconductor/cli/overview/)
+- [Policy Writing Guide](https://plexusone.github.io/pipelineconductor/policies/writing/)
+- [GitHub Actions Integration](https://plexusone.github.io/pipelineconductor/integration/github-actions/)
+- [Release Notes](https://plexusone.github.io/pipelineconductor/releases/v0.2.0/)
 
 ## Architecture
 
 ```
-┌────────────────────────────────────────────────────────────────┐
-│                      PipelineConductor CLI                     │
-├────────────────────────────────────────────────────────────────┤
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────────────┐  │
-│  │  Collectors  │  │    Policy    │  │     Remediator       │  │
-│  │ - GitHub API │  │    Engine    │  │ - PR Generator       │  │
-│  │ - GitLab API │  │ - Cedar      │  │ - Patch Builder      │  │
-│  └──────────────┘  └──────────────┘  └──────────────────────┘  │
-│                            │                                   │
-│                    ┌───────┴────────┐                          │
-│                    │   pkg/model    │                          │
-│                    └────────────────┘                          │
-└────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────┐
+│                     PipelineConductor CLI                       │
+├─────────────────────────────────────────────────────────────────┤
+│  ┌──────────────┐  ┌──────────────┐  ┌───────────────────────┐  │
+│  │  Collectors  │  │    Policy    │  │     Compliance        │  │
+│  │ - GitHub API │  │    Engine    │  │ - Reference Matcher   │  │
+│  │ - Local FS   │  │ - Cedar      │  │ - Workflow Generator  │  │
+│  └──────────────┘  └──────────────┘  └───────────────────────┘  │
+│                            │                                    │
+│                    ┌───────┴────────┐                           │
+│                    │   pkg/model    │                           │
+│                    └────────────────┘                           │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 ## Contributing
