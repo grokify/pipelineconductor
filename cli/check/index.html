@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://grokify.github.io/pipelineconductor/cli/validate/">
+        <link rel="canonical" href="https://grokify.github.io/pipelineconductor/cli/check/">
       
       
-        <link rel="prev" href="../apply/">
+        <link rel="prev" href="../scan/">
       
       
-        <link rel="next" href="../config/">
+        <link rel="next" href="../remediate/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>validate - PipelineConductor</title>
+        <title>check - PipelineConductor</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#validate-command" class="md-skip">
+        <a href="#check" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              validate
+              check
             
           </span>
         </div>
@@ -659,10 +659,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../check/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    check
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -673,6 +695,257 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#synopsis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Synopsis
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      Description
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Flags
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compliance-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compliance Levels
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#match-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Match Types
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#local-filesystem-scanning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Local Filesystem Scanning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github-api-scanning" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub API Scanning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strict-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Strict Mode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generate-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generate Dashboard
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output-formats" class="md-nav__link">
+    <span class="md-ellipsis">
+      Output Formats
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Output Formats">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#json-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      JSON Output
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#markdown-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Markdown Output
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#html-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTML Output
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filename-mismatch-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filename Mismatch Detection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflow-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Workflow Rules
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Workflow Rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#go" class="md-nav__link">
+    <span class="md-ellipsis">
+      Go
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#typescript" class="md-nav__link">
+    <span class="md-ellipsis">
+      TypeScript
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cedar-policy-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cedar Policy Evaluation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cedar Policy Evaluation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#policy-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Policy Flags
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#available-policy-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      Available Policy Context
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Policy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      See Also
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -728,32 +1001,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    validate
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../validate/" class="md-nav__link">
         
   
   
@@ -764,149 +1015,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#synopsis" class="md-nav__link">
-    <span class="md-ellipsis">
-      Synopsis
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#description" class="md-nav__link">
-    <span class="md-ellipsis">
-      Description
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#arguments" class="md-nav__link">
-    <span class="md-ellipsis">
-      Arguments
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#flags" class="md-nav__link">
-    <span class="md-ellipsis">
-      Flags
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      Examples
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Examples">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#validate-built-in-policies" class="md-nav__link">
-    <span class="md-ellipsis">
-      Validate Built-in Policies
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#validate-a-directory" class="md-nav__link">
-    <span class="md-ellipsis">
-      Validate a Directory
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#validate-with-verbose-output" class="md-nav__link">
-    <span class="md-ellipsis">
-      Validate with Verbose Output
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#validate-a-single-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      Validate a Single File
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#handling-errors" class="md-nav__link">
-    <span class="md-ellipsis">
-      Handling Errors
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exit-codes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Exit Codes
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#use-in-cicd" class="md-nav__link">
-    <span class="md-ellipsis">
-      Use in CI/CD
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#see-also" class="md-nav__link">
-    <span class="md-ellipsis">
-      See Also
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1644,18 +1752,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#arguments" class="md-nav__link">
+  <a href="#flags" class="md-nav__link">
     <span class="md-ellipsis">
-      Arguments
+      Flags
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#flags" class="md-nav__link">
+  <a href="#compliance-levels" class="md-nav__link">
     <span class="md-ellipsis">
-      Flags
+      Compliance Levels
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#match-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Match Types
     </span>
   </a>
   
@@ -1672,45 +1789,36 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#validate-built-in-policies" class="md-nav__link">
+  <a href="#local-filesystem-scanning" class="md-nav__link">
     <span class="md-ellipsis">
-      Validate Built-in Policies
+      Local Filesystem Scanning
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#validate-a-directory" class="md-nav__link">
+  <a href="#github-api-scanning" class="md-nav__link">
     <span class="md-ellipsis">
-      Validate a Directory
+      GitHub API Scanning
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#validate-with-verbose-output" class="md-nav__link">
+  <a href="#strict-mode" class="md-nav__link">
     <span class="md-ellipsis">
-      Validate with Verbose Output
+      Strict Mode
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#validate-a-single-file" class="md-nav__link">
+  <a href="#generate-dashboard" class="md-nav__link">
     <span class="md-ellipsis">
-      Validate a Single File
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#handling-errors" class="md-nav__link">
-    <span class="md-ellipsis">
-      Handling Errors
+      Generate Dashboard
     </span>
   </a>
   
@@ -1722,20 +1830,128 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#exit-codes" class="md-nav__link">
+  <a href="#output-formats" class="md-nav__link">
     <span class="md-ellipsis">
-      Exit Codes
+      Output Formats
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Output Formats">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#json-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      JSON Output
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#markdown-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Markdown Output
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#html-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTML Output
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filename-mismatch-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filename Mismatch Detection
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-in-cicd" class="md-nav__link">
+  <a href="#workflow-rules" class="md-nav__link">
     <span class="md-ellipsis">
-      Use in CI/CD
+      Workflow Rules
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Workflow Rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#go" class="md-nav__link">
+    <span class="md-ellipsis">
+      Go
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#typescript" class="md-nav__link">
+    <span class="md-ellipsis">
+      TypeScript
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cedar-policy-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cedar Policy Evaluation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cedar Policy Evaluation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#policy-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Policy Flags
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#available-policy-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      Available Policy Context
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Policy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1767,34 +1983,348 @@
   
 
 
-<h1 id="validate-command">validate Command<a class="headerlink" href="#validate-command" title="Permanent link">&para;</a></h1>
-<p>The <code>validate</code> command validates Cedar policy syntax and loads policies from a directory or file.</p>
+<h1 id="check">check<a class="headerlink" href="#check" title="Permanent link">&para;</a></h1>
+<p>The <code>check</code> command scans repositories for workflow compliance against a reference repository containing reusable workflows.</p>
 <h2 id="synopsis">Synopsis<a class="headerlink" href="#synopsis" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pipelineconductor<span class="w"> </span>validate<span class="w"> </span><span class="o">[</span>path<span class="o">]</span><span class="w"> </span><span class="o">[</span>flags<span class="o">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pipelineconductor<span class="w"> </span>check<span class="w"> </span><span class="o">[</span>flags<span class="o">]</span>
 </code></pre></div>
 <h2 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h2>
-<p>The validate command checks that Cedar policy files are syntactically correct without running a full scan. This is useful for:</p>
+<p>The check command analyzes repositories to determine if they are using the required reusable workflows from a reference repository. It supports:</p>
 <ul>
-<li>Testing policies during development</li>
-<li>CI/CD pipeline validation</li>
-<li>Verifying policy syntax before deployment</li>
+<li><strong>GitHub API scanning</strong>: Scan public repositories from organizations and users</li>
+<li><strong>Local filesystem scanning</strong>: Scan locally cloned repositories without requiring a GitHub token</li>
+<li><strong>Multiple output formats</strong>: JSON for programmatic use, Markdown for human-readable reports</li>
+<li><strong>Strict mode</strong>: Require exact reusable workflow usage (no equivalent matching)</li>
+<li><strong>Dashboard generation</strong>: Create Dashforge-compatible dashboard JSON</li>
 </ul>
-<h2 id="arguments">Arguments<a class="headerlink" href="#arguments" title="Permanent link">&para;</a></h2>
+<h2 id="flags">Flags<a class="headerlink" href="#flags" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Argument</th>
+<th>Flag</th>
+<th>Short</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--local</code></td>
+<td></td>
+<td>Scan local filesystem instead of GitHub API</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>--languages</code></td>
+<td><code>-l</code></td>
+<td>Filter by languages (Go, TypeScript, Crystal)</td>
+<td>(required)</td>
+</tr>
+<tr>
+<td><code>--users</code></td>
+<td><code>-u</code></td>
+<td>GitHub users to scan</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>--ref-repo</code></td>
+<td><code>-r</code></td>
+<td>Reference workflow repository (owner/repo)</td>
+<td><code>grokify/.github</code></td>
+</tr>
+<tr>
+<td><code>--ref-branch</code></td>
+<td></td>
+<td>Branch in reference repo</td>
+<td><code>main</code></td>
+</tr>
+<tr>
+<td><code>--output</code></td>
+<td><code>-o</code></td>
+<td>Output file path</td>
+<td>stdout</td>
+</tr>
+<tr>
+<td><code>--format</code></td>
+<td><code>-f</code></td>
+<td>Output format: json, markdown, html</td>
+<td><code>json</code></td>
+</tr>
+<tr>
+<td><code>--strict</code></td>
+<td></td>
+<td>Require exact reusable workflow usage</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>--include-archived</code></td>
+<td></td>
+<td>Include archived repositories</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>--include-forks</code></td>
+<td></td>
+<td>Include forked repositories</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>--dashboard</code></td>
+<td><code>-d</code></td>
+<td>Generate Dashforge dashboard JSON to this path</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>--data-url</code></td>
+<td></td>
+<td>Data URL for dashboard</td>
+<td>relative path</td>
+</tr>
+</tbody>
+</table>
+<h2 id="compliance-levels">Compliance Levels<a class="headerlink" href="#compliance-levels" title="Permanent link">&para;</a></h2>
+<p>The check command categorizes repositories into three compliance levels:</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>path</code></td>
-<td>Path to a policy file or directory (optional if <code>--builtin</code> is used)</td>
+<td><strong>Full</strong></td>
+<td>All required workflows use the exact reusable workflows from the reference repo</td>
+</tr>
+<tr>
+<td><strong>Partial</strong></td>
+<td>Workflows are present but use equivalent implementations (not reusable workflows)</td>
+</tr>
+<tr>
+<td><strong>None</strong></td>
+<td>Required workflows are missing</td>
 </tr>
 </tbody>
 </table>
-<h2 id="flags">Flags<a class="headerlink" href="#flags" title="Permanent link">&para;</a></h2>
+<h2 id="match-types">Match Types<a class="headerlink" href="#match-types" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>exact</code></td>
+<td>Uses the reusable workflow from the reference repository</td>
+</tr>
+<tr>
+<td><code>equivalent</code></td>
+<td>Has a workflow that performs the same function but doesn't use the reusable workflow</td>
+</tr>
+<tr>
+<td><code>none</code></td>
+<td>No matching workflow found</td>
+</tr>
+</tbody>
+</table>
+<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
+<h3 id="local-filesystem-scanning">Local Filesystem Scanning<a class="headerlink" href="#local-filesystem-scanning" title="Permanent link">&para;</a></h3>
+<p>Scan locally cloned repositories without requiring a GitHub token:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Scan all Go repos in a directory</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>pipelineconductor<span class="w"> </span>check<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>--local<span class="w"> </span>~/go/src/github.com<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span>--orgs<span class="w"> </span>myorg<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span>--languages<span class="w"> </span>Go<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span>--ref-repo<span class="w"> </span>myorg/.github
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1"># Scan with markdown output</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>pipelineconductor<span class="w"> </span>check<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span>--local<span class="w"> </span>~/projects<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span>--orgs<span class="w"> </span>mycompany<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">  </span>--languages<span class="w"> </span>Go,TypeScript<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">  </span>--format<span class="w"> </span>markdown<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">  </span>--output<span class="w"> </span>compliance-report.md
+</code></pre></div>
+<h3 id="github-api-scanning">GitHub API Scanning<a class="headerlink" href="#github-api-scanning" title="Permanent link">&para;</a></h3>
+<p>Scan repositories via the GitHub API (requires token):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Scan organization repositories</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">GITHUB_TOKEN</span><span class="o">=</span>ghp_xxx
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>pipelineconductor<span class="w"> </span>check<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span>--orgs<span class="w"> </span>myorg<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span>--languages<span class="w"> </span>Go<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span>--ref-repo<span class="w"> </span>myorg/.github
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1"># Scan user repositories</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>pipelineconductor<span class="w"> </span>check<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span>--users<span class="w"> </span>johndoe<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">  </span>--languages<span class="w"> </span>TypeScript<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">  </span>--format<span class="w"> </span>markdown
+</code></pre></div>
+<h3 id="strict-mode">Strict Mode<a class="headerlink" href="#strict-mode" title="Permanent link">&para;</a></h3>
+<p>Require exact reusable workflow usage (no equivalent matching):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>pipelineconductor<span class="w"> </span>check<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>--local<span class="w"> </span>~/go/src/github.com<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>--orgs<span class="w"> </span>myorg<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span>--languages<span class="w"> </span>Go<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span>--strict
+</code></pre></div>
+<h3 id="generate-dashboard">Generate Dashboard<a class="headerlink" href="#generate-dashboard" title="Permanent link">&para;</a></h3>
+<p>Create a Dashforge-compatible dashboard alongside the JSON output:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>pipelineconductor<span class="w"> </span>check<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span>--local<span class="w"> </span>~/go/src/github.com<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span>--orgs<span class="w"> </span>myorg<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span>--languages<span class="w"> </span>Go<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span>--output<span class="w"> </span>results.json<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span>--dashboard<span class="w"> </span>dashboard.json
+</code></pre></div>
+<h2 id="output-formats">Output Formats<a class="headerlink" href="#output-formats" title="Permanent link">&para;</a></h2>
+<h3 id="json-output">JSON Output<a class="headerlink" href="#json-output" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">&quot;schemaVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-01-15T10:30:00Z&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="nt">&quot;totalRepos&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="nt">&quot;compliantRepos&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="nt">&quot;partialRepos&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="nt">&quot;nonCompliant&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">    </span><span class="nt">&quot;complianceRate&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="nt">&quot;byLanguage&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">      </span><span class="p">{</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">        </span><span class="nt">&quot;language&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Go&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">        </span><span class="nt">&quot;totalRepos&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">        </span><span class="nt">&quot;compliantRepos&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">        </span><span class="nt">&quot;complianceRate&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">50.0</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">      </span><span class="p">}</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">    </span><span class="p">]</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">  </span><span class="nt">&quot;repos&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="w">      </span><span class="nt">&quot;fullName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;myorg/myrepo&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="w">      </span><span class="nt">&quot;complianceLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;full&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="w">      </span><span class="nt">&quot;requiredWorkflows&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="w">          </span><span class="nt">&quot;workflowType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;go-ci&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="w">          </span><span class="nt">&quot;present&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a><span class="w">          </span><span class="nt">&quot;usesReusable&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="w">          </span><span class="nt">&quot;matchType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;exact&quot;</span>
+<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a><span class="w">      </span><span class="p">]</span>
+<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a><span class="w">  </span><span class="p">]</span>
+<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="markdown-output">Markdown Output<a class="headerlink" href="#markdown-output" title="Permanent link">&para;</a></h3>
+<p>The markdown format produces a human-readable report with:</p>
+<ul>
+<li>Summary statistics table</li>
+<li>Per-language breakdown</li>
+<li>Non-compliant repositories with missing workflows</li>
+<li>Partially compliant repositories with filename mismatch warnings</li>
+<li>Fully compliant repositories list</li>
+</ul>
+<h3 id="html-output">HTML Output<a class="headerlink" href="#html-output" title="Permanent link">&para;</a></h3>
+<p>The HTML format generates a self-contained web page with:</p>
+<ul>
+<li>Summary cards showing total, compliant, partial, and non-compliant counts</li>
+<li>Visual progress bar showing compliance breakdown</li>
+<li>Per-language statistics table</li>
+<li>Interactive filter buttons to show/hide repository categories</li>
+<li>Detailed tables for each compliance level with workflow status</li>
+<li>Configuration section showing scan parameters</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Generate HTML report</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>pipelineconductor<span class="w"> </span>check<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span>--local<span class="w"> </span>~/go/src/github.com<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span>--orgs<span class="w"> </span>myorg<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span>--languages<span class="w"> </span>Go<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">  </span>--format<span class="w"> </span>html<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">  </span>--output<span class="w"> </span>compliance-report.html
+</code></pre></div>
+<h2 id="filename-mismatch-detection">Filename Mismatch Detection<a class="headerlink" href="#filename-mismatch-detection" title="Permanent link">&para;</a></h2>
+<p>When a repository has an equivalent workflow but with a non-standard filename, the check command will flag this as a filename mismatch:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gu">### myorg/myrepo</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>| Workflow | Present | Reusable | Match |
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>|----------|---------|----------|-------|
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>| go-ci | Yes | No | equivalent |
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="gs">**Filename Mismatches:**</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="k">-</span><span class="w"> </span><span class="sb">`go-ci`</span>: expected <span class="sb">`go-ci.yaml`</span>, found <span class="sb">`ci.yaml`</span>
+</code></pre></div>
+<h2 id="workflow-rules">Workflow Rules<a class="headerlink" href="#workflow-rules" title="Permanent link">&para;</a></h2>
+<p>The check command uses predefined rules for each supported language:</p>
+<h3 id="go">Go<a class="headerlink" href="#go" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Workflow</th>
+<th>Expected Filename</th>
+<th>Severity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>go-ci</td>
+<td><code>go-ci.yaml</code></td>
+<td>high</td>
+</tr>
+<tr>
+<td>go-lint</td>
+<td><code>go-lint.yaml</code></td>
+<td>medium</td>
+</tr>
+<tr>
+<td>go-sast-codeql</td>
+<td><code>go-sast-codeql.yaml</code></td>
+<td>medium</td>
+</tr>
+</tbody>
+</table>
+<h3 id="typescript">TypeScript<a class="headerlink" href="#typescript" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Workflow</th>
+<th>Expected Filename</th>
+<th>Severity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ts-ci</td>
+<td><code>ts-ci.yaml</code></td>
+<td>high</td>
+</tr>
+<tr>
+<td>ts-lint</td>
+<td><code>ts-lint.yaml</code></td>
+<td>medium</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cedar-policy-evaluation">Cedar Policy Evaluation<a class="headerlink" href="#cedar-policy-evaluation" title="Permanent link">&para;</a></h2>
+<p>The check command can evaluate Cedar policies against compliance results:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Evaluate policies from a directory</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>pipelineconductor<span class="w"> </span>check<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span>--local<span class="w"> </span>~/go/src/github.com<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span>--orgs<span class="w"> </span>myorg<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span>--languages<span class="w"> </span>Go<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">  </span>--policies<span class="w"> </span>./policies/compliance/<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">  </span>--policy-action<span class="w"> </span>merge
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="c1"># Fail if any repo is denied</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>pipelineconductor<span class="w"> </span>check<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">  </span>--local<span class="w"> </span>~/go/src/github.com<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">  </span>--orgs<span class="w"> </span>myorg<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">  </span>--languages<span class="w"> </span>Go<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">  </span>--policies<span class="w"> </span>./policies/strict-compliance.cedar<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">  </span>--policy-action<span class="w"> </span>deploy<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">  </span>--fail-on-deny
+</code></pre></div>
+<h3 id="policy-flags">Policy Flags<a class="headerlink" href="#policy-flags" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -1805,111 +2335,98 @@
 </thead>
 <tbody>
 <tr>
-<td><code>--builtin</code></td>
-<td>Validate built-in policies</td>
-<td><code>false</code></td>
+<td><code>--policies</code></td>
+<td>Path to Cedar policy files or directory</td>
+<td>-</td>
 </tr>
 <tr>
-<td><code>--verbose</code></td>
-<td>Show policy details</td>
+<td><code>--policy-action</code></td>
+<td>Action to evaluate (merge, build, deploy, release)</td>
+<td><code>merge</code></td>
+</tr>
+<tr>
+<td><code>--fail-on-deny</code></td>
+<td>Exit with error if any policy denies the action</td>
 <td><code>false</code></td>
 </tr>
 </tbody>
 </table>
-<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
-<h3 id="validate-built-in-policies">Validate Built-in Policies<a class="headerlink" href="#validate-built-in-policies" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pipelineconductor<span class="w"> </span>validate<span class="w"> </span>--builtin
-</code></pre></div>
-<p>Output:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Validating built-in policies...
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>✓ Built-in policies are valid
-</code></pre></div>
-<h3 id="validate-a-directory">Validate a Directory<a class="headerlink" href="#validate-a-directory" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>pipelineconductor<span class="w"> </span>validate<span class="w"> </span>./policies/
-</code></pre></div>
-<p>Output:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Validating policies in directory: ./policies/
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>✓ 5 policy file(s) validated successfully
-</code></pre></div>
-<h3 id="validate-with-verbose-output">Validate with Verbose Output<a class="headerlink" href="#validate-with-verbose-output" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>pipelineconductor<span class="w"> </span>validate<span class="w"> </span>./policies/<span class="w"> </span>--verbose
-</code></pre></div>
-<p>Output:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Validating policies in directory: ./policies/
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>  ✓ ./policies/go/merge.cedar
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>  ✓ ./policies/go/versions.cedar
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>  ✓ ./policies/go/matrix.cedar
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>  ✓ ./policies/go/dependencies.cedar
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>  ✓ ./policies/go/reusable-workflow.cedar
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>✓ 5 policy file(s) validated successfully
-</code></pre></div>
-<h3 id="validate-a-single-file">Validate a Single File<a class="headerlink" href="#validate-a-single-file" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>pipelineconductor<span class="w"> </span>validate<span class="w"> </span>./policies/go/merge.cedar
-</code></pre></div>
-<p>Output:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Validating policy file: ./policies/go/merge.cedar
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>✓ 1 policy file(s) validated successfully
-</code></pre></div>
-<h3 id="handling-errors">Handling Errors<a class="headerlink" href="#handling-errors" title="Permanent link">&para;</a></h3>
-<p>When a policy has syntax errors:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>pipelineconductor<span class="w"> </span>validate<span class="w"> </span>./policies/
-</code></pre></div>
-<p>Output:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Validating policies in directory: ./policies/
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>Errors found:
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>  ✗ ./policies/broken.cedar: parsing error at line 5
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>1 policy file(s) have errors
-</code></pre></div>
-<h2 id="exit-codes">Exit Codes<a class="headerlink" href="#exit-codes" title="Permanent link">&para;</a></h2>
+<h3 id="available-policy-context">Available Policy Context<a class="headerlink" href="#available-policy-context" title="Permanent link">&para;</a></h3>
+<p>Cedar policies can access the following compliance context:</p>
 <table>
 <thead>
 <tr>
-<th>Code</th>
-<th>Meaning</th>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>0</td>
-<td>All policies are valid</td>
+<td><code>complianceLevel</code></td>
+<td>string</td>
+<td>"full", "partial", or "none"</td>
 </tr>
 <tr>
-<td>1</td>
-<td>One or more policies have errors</td>
+<td><code>compliant</code></td>
+<td>boolean</td>
+<td>True if fully compliant</td>
+</tr>
+<tr>
+<td><code>complianceRate</code></td>
+<td>long</td>
+<td>Percentage (0-100)</td>
+</tr>
+<tr>
+<td><code>missingWorkflowCount</code></td>
+<td>long</td>
+<td>Number of missing workflows</td>
+</tr>
+<tr>
+<td><code>missingWorkflows</code></td>
+<td>set</td>
+<td>Set of missing workflow types</td>
+</tr>
+<tr>
+<td><code>hasFilenameMismatch</code></td>
+<td>boolean</td>
+<td>True if any filename mismatches</td>
+</tr>
+<tr>
+<td><code>usesReusableWorkflows</code></td>
+<td>boolean</td>
+<td>True if using reusable workflows</td>
+</tr>
+<tr>
+<td><code>exactMatchCount</code></td>
+<td>long</td>
+<td>Count of exact matches</td>
+</tr>
+<tr>
+<td><code>equivalentMatchCount</code></td>
+<td>long</td>
+<td>Count of equivalent matches</td>
 </tr>
 </tbody>
 </table>
-<h2 id="use-in-cicd">Use in CI/CD<a class="headerlink" href="#use-in-cicd" title="Permanent link">&para;</a></h2>
-<p>Add policy validation to your CI pipeline:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># .github/workflows/validate-policies.yml</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Validate Policies</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="nt">on</span><span class="p">:</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">  </span><span class="nt">push</span><span class="p">:</span>
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">    </span><span class="nt">paths</span><span class="p">:</span>
-<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;policies/**&#39;</span>
-<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
-<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="nt">jobs</span><span class="p">:</span>
-<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">  </span><span class="nt">validate</span><span class="p">:</span>
-<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
-<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
-<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
-<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>
-<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install PipelineConductor</span>
-<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">go install github.com/plexusone/pipelineconductor/cmd/pipelineconductor@latest</span>
-<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>
-<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Validate policies</span>
-<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pipelineconductor validate ./policies/ --verbose</span>
+<h3 id="example-policy">Example Policy<a class="headerlink" href="#example-policy" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>// Only allow merge for fully compliant repos
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>permit(
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    principal,
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    action == Action::&quot;merge&quot;,
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    resource
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>)
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>when {
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>    context.complianceLevel == &quot;full&quot; &amp;&amp;
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>    context.compliant == true
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>};
 </code></pre></div>
 <h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../scan/">scan</a> - Run compliance scans</li>
-<li><a href="../../policies/cedar-syntax/">Cedar Syntax</a> - Cedar policy language reference</li>
-<li><a href="../../policies/writing/">Writing Policies</a> - Policy authoring guide</li>
+<li><a href="../remediate/">remediate</a> - Generate compliant workflow files</li>
+<li><a href="../apply/">apply</a> - Apply remediation with git operations</li>
+<li><a href="../../integration/github-actions/">GitHub Actions Integration</a></li>
+<li><a href="../../policies/overview/">Cedar Policies</a></li>
 </ul>
 
 
