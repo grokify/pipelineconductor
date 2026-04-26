@@ -1,0 +1,229 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/plexusone/pipelineconductor/schema/check_result.schema.json",
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string"
+    },
+    "summary": {
+      "properties": {
+        "totalRepos": {
+          "type": "integer"
+        },
+        "compliantRepos": {
+          "type": "integer"
+        },
+        "partialRepos": {
+          "type": "integer"
+        },
+        "nonCompliant": {
+          "type": "integer"
+        },
+        "skipped": {
+          "type": "integer"
+        },
+        "errors": {
+          "type": "integer"
+        },
+        "complianceRate": {
+          "type": "number"
+        },
+        "byLanguage": {
+          "items": {
+            "properties": {
+              "language": {
+                "type": "string"
+              },
+              "totalRepos": {
+                "type": "integer"
+              },
+              "compliantRepos": {
+                "type": "integer"
+              },
+              "complianceRate": {
+                "type": "number"
+              }
+            },
+            "additionalProperties": false,
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "repos": {
+      "items": {
+        "properties": {
+          "owner": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "fullName": {
+            "type": "string"
+          },
+          "htmlUrl": {
+            "type": "string"
+          },
+          "languages": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "compliant": {
+            "type": "boolean"
+          },
+          "complianceLevel": {
+            "type": "string"
+          },
+          "requiredWorkflows": {
+            "items": {
+              "properties": {
+                "workflowType": {
+                  "type": "string"
+                },
+                "required": {
+                  "type": "boolean"
+                },
+                "present": {
+                  "type": "boolean"
+                },
+                "usesReusable": {
+                  "type": "boolean"
+                },
+                "reusableRef": {
+                  "type": "string"
+                },
+                "expectedRef": {
+                  "type": "string"
+                },
+                "matchType": {
+                  "type": "string"
+                },
+                "actualWorkflow": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false,
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "actualWorkflows": {
+            "items": {
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "path": {
+                  "type": "string"
+                },
+                "usesReusable": {
+                  "type": "boolean"
+                },
+                "reusableRefs": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "detectedLanguage": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false,
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "missing": {
+            "items": {
+              "properties": {
+                "language": {
+                  "type": "string"
+                },
+                "workflowType": {
+                  "type": "string"
+                },
+                "refPath": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false,
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "skipped": {
+            "type": "boolean"
+          },
+          "skipReason": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          },
+          "scanTimeMs": {
+            "type": "integer"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "scanDurationMs": {
+      "type": "integer"
+    },
+    "config": {
+      "properties": {
+        "orgs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "users": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "refRepo": {
+          "type": "string"
+        },
+        "refBranch": {
+          "type": "string"
+        },
+        "languages": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "strict": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "type": "object",
+  "title": "CheckResult",
+  "description": "Workflow compliance check result"
+}
