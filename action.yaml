@@ -1,0 +1,124 @@
+name: 'PipelineConductor Compliance Check'
+description: 'Check workflow compliance against reference reusable workflows'
+author: 'plexusone'
+
+branding:
+  icon: 'check-circle'
+  color: 'green'
+
+inputs:
+  ref-repo:
+    description: 'Reference workflow repository (owner/repo)'
+    required: false
+    default: 'plexusone/.github'
+  ref-branch:
+    description: 'Branch in reference repo'
+    required: false
+    default: 'main'
+  languages:
+    description: 'Languages to check (comma-separated)'
+    required: false
+    default: 'Go'
+  strict:
+    description: 'Require exact reusable workflow usage'
+    required: false
+    default: 'false'
+  fail-on-non-compliant:
+    description: 'Fail the action if workflows are non-compliant'
+    required: false
+    default: 'false'
+
+outputs:
+  compliance-level:
+    description: 'Compliance level (full, partial, none)'
+    value: ${{ steps.check.outputs.compliance-level }}
+  compliance-rate:
+    description: 'Compliance rate percentage'
+    value: ${{ steps.check.outputs.compliance-rate }}
+  missing-workflows:
+    description: 'JSON array of missing workflows'
+    value: ${{ steps.check.outputs.missing-workflows }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Go
+      uses: actions/setup-go@v6
+      with:
+        go-version: '1.x'
+
+    - name: Install pipelineconductor
+      shell: bash
+      run: |
+        go install github.com/plexusone/pipelineconductor/cmd/pipelineconductor@latest
+
+    - name: Run compliance check
+      id: check
+      shell: bash
+      run: |
+        # Determine repo info from GITHUB_REPOSITORY
+        REPO_OWNER=$(echo "$GITHUB_REPOSITORY" | cut -d'/' -f1)
+        REPO_NAME=$(echo "$GITHUB_REPOSITORY" | cut -d'/' -f2)
+
+        # Build strict flag
+        STRICT_FLAG=""
+        if [ "${{ inputs.strict }}" = "true" ]; then
+          STRICT_FLAG="--strict"
+        fi
+
+        # Run compliance check
+        RESULT=$(pipelineconductor check \
+          --local "$GITHUB_WORKSPACE" \
+          --orgs "$REPO_OWNER" \
+          --languages "${{ inputs.languages }}" \
+          --ref-repo "${{ inputs.ref-repo }}" \
+          --ref-branch "${{ inputs.ref-branch }}" \
+          $STRICT_FLAG \
+          --format json 2>/dev/null || echo '{"summary":{"complianceRate":0},"repos":[]}')
+
+        # Extract values
+        RATE=$(echo "$RESULT" | jq -r '.summary.complianceRate // 0')
+        LEVEL=$(echo "$RESULT" | jq -r '.repos[0].complianceLevel // "unknown"')
+        MISSING=$(echo "$RESULT" | jq -c '.repos[0].missing // []')
+
+        # Set outputs
+        echo "compliance-rate=$RATE" >> $GITHUB_OUTPUT
+        echo "compliance-level=$LEVEL" >> $GITHUB_OUTPUT
+        echo "missing-workflows=$MISSING" >> $GITHUB_OUTPUT
+
+        # Generate summary
+        echo "## Workflow Compliance Check" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "| Property | Value |" >> $GITHUB_STEP_SUMMARY
+        echo "|----------|-------|" >> $GITHUB_STEP_SUMMARY
+        echo "| Reference | ${{ inputs.ref-repo }}@${{ inputs.ref-branch }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Languages | ${{ inputs.languages }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Compliance Level | $LEVEL |" >> $GITHUB_STEP_SUMMARY
+        echo "| Compliance Rate | ${RATE}% |" >> $GITHUB_STEP_SUMMARY
+
+        # Show missing workflows
+        MISSING_COUNT=$(echo "$MISSING" | jq 'length')
+        if [ "$MISSING_COUNT" -gt 0 ]; then
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Missing Workflows" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "$RESULT" | jq -r '.repos[0].missing[] | "- **\(.workflowType)** (\(.severity)): \(.description)"' >> $GITHUB_STEP_SUMMARY
+        fi
+
+        # Set badge color based on compliance
+        if [ "$LEVEL" = "full" ]; then
+          echo "::notice::Workflow compliance: FULL (${RATE}%)"
+        elif [ "$LEVEL" = "partial" ]; then
+          echo "::warning::Workflow compliance: PARTIAL (${RATE}%)"
+        else
+          echo "::error::Workflow compliance: NONE (${RATE}%)"
+        fi
+
+    - name: Fail on non-compliance
+      if: inputs.fail-on-non-compliant == 'true' && steps.check.outputs.compliance-level != 'full'
+      shell: bash
+      run: |
+        echo "::error::Workflow compliance check failed."
+        echo "Compliance level: ${{ steps.check.outputs.compliance-level }}"
+        echo "Missing workflows: ${{ steps.check.outputs.missing-workflows }}"
+        exit 1

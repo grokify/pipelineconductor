@@ -1,0 +1,101 @@
+name: Workflow Compliance Check
+
+on:
+  workflow_call:
+    inputs:
+      ref-repo:
+        description: 'Reference workflow repository (owner/repo)'
+        required: false
+        type: string
+        default: 'plexusone/.github'
+      ref-branch:
+        description: 'Branch in reference repo'
+        required: false
+        type: string
+        default: 'main'
+      languages:
+        description: 'Languages to check (comma-separated)'
+        required: false
+        type: string
+        default: 'Go'
+      strict:
+        description: 'Require exact reusable workflow usage'
+        required: false
+        type: boolean
+        default: false
+      fail-on-non-compliant:
+        description: 'Fail the check if workflows are non-compliant'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  check-compliance:
+    name: Check Workflow Compliance
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: '1.x'
+
+      - name: Install pipelineconductor
+        run: |
+          go install github.com/plexusone/pipelineconductor/cmd/pipelineconductor@latest
+
+      - name: Check workflow compliance
+        id: compliance
+        run: |
+          # Run compliance check on the current repo
+          RESULT=$(pipelineconductor check \
+            --local . \
+            --orgs "$(basename $(dirname $(pwd)))" \
+            --languages "${{ inputs.languages }}" \
+            --ref-repo "${{ inputs.ref-repo }}" \
+            --ref-branch "${{ inputs.ref-branch }}" \
+            ${{ inputs.strict && '--strict' || '' }} \
+            --format json 2>/dev/null || echo '{"summary":{"complianceRate":0}}')
+
+          # Extract compliance rate
+          RATE=$(echo "$RESULT" | jq -r '.summary.complianceRate // 0')
+          LEVEL=$(echo "$RESULT" | jq -r '.repos[0].complianceLevel // "unknown"')
+
+          echo "compliance-rate=$RATE" >> $GITHUB_OUTPUT
+          echo "compliance-level=$LEVEL" >> $GITHUB_OUTPUT
+
+          # Output results
+          echo "## Workflow Compliance Check" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Reference:** ${{ inputs.ref-repo }}@${{ inputs.ref-branch }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Languages:** ${{ inputs.languages }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Compliance Level:** $LEVEL" >> $GITHUB_STEP_SUMMARY
+          echo "**Compliance Rate:** ${RATE}%" >> $GITHUB_STEP_SUMMARY
+
+          # Show detailed results
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Required Workflows" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo '```json' >> $GITHUB_STEP_SUMMARY
+          echo "$RESULT" | jq '.repos[0].requiredWorkflows // []' >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+
+          # Check for missing workflows
+          MISSING=$(echo "$RESULT" | jq -r '.repos[0].missing // [] | length')
+          if [ "$MISSING" -gt 0 ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### Missing Workflows" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "$RESULT" | jq -r '.repos[0].missing[] | "- **\(.workflowType)** (\(.severity)): \(.description)"' >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Fail on non-compliance
+        if: inputs.fail-on-non-compliant && steps.compliance.outputs.compliance-level != 'full'
+        run: |
+          echo "::error::Workflow compliance check failed. Level: ${{ steps.compliance.outputs.compliance-level }}"
+          exit 1
