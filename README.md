@@ -12,12 +12,12 @@ PipelineConductor is a tool for managing CI/CD pipeline consistency across hundr
 
 ## Features
 
-- **Multi-org scanning**: Scan repositories across multiple GitHub organizations
-- **Policy-as-code**: Define CI/CD policies using [Cedar](https://www.cedarpolicy.com/)
-- **Profile system**: Named configurations for different project types (default, modern, legacy)
-- **Compliance reports**: Generate JSON, SARIF, Markdown, and CSV reports
-- **Automated remediation**: Create PRs to fix policy violations
-- **API-first**: Efficient GitHub API usage with selective git inspection
+- 🏢 **Multi-org scanning**: Scan repositories across multiple GitHub organizations
+- 📜 **Policy-as-code**: Define CI/CD policies using [Cedar](https://www.cedarpolicy.com/)
+- ⚙️ **Profile system**: Named configurations for different project types (default, modern, legacy)
+- 📊 **Compliance reports**: Generate JSON, SARIF, Markdown, and CSV reports
+- 🔧 **Automated remediation**: Create PRs to fix policy violations
+- ⚡ **API-first**: Efficient GitHub API usage with selective git inspection
 
 ## Installation
 
