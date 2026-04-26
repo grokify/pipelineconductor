@@ -136,7 +136,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install PipelineConductor
-        run: go install github.com/grokify/pipelineconductor/cmd/pipelineconductor@latest
+        run: go install github.com/plexusone/pipelineconductor/cmd/pipelineconductor@latest
 
       - name: Validate policies
         run: pipelineconductor validate ./policies/ --verbose

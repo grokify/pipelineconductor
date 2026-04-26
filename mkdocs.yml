@@ -1,7 +1,7 @@
 site_name: PipelineConductor
 site_description: Orchestrate and harmonize multi-repo CI/CD pipelines with policy-driven automation
 site_url: https://grokify.github.io/pipelineconductor/
-repo_url: https://github.com/grokify/pipelineconductor
+repo_url: https://github.com/plexusone/pipelineconductor
 repo_name: grokify/pipelineconductor
 
 theme:
@@ -53,6 +53,9 @@ nav:
   - CLI Reference:
       - Overview: cli/overview.md
       - scan: cli/scan.md
+      - check: cli/check.md
+      - remediate: cli/remediate.md
+      - apply: cli/apply.md
       - validate: cli/validate.md
       - Configuration: cli/config.md
   - Policies:
@@ -80,4 +83,4 @@ nav:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/grokify/pipelineconductor
+      link: https://github.com/plexusone/pipelineconductor

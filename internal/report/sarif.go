@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/grokify/pipelineconductor/pkg/model"
+	"github.com/plexusone/pipelineconductor/pkg/model"
 )
 
 // SARIFFormatter generates SARIF reports for GitHub Security integration.
@@ -208,7 +208,7 @@ func (f *SARIFFormatter) Format(result *model.ComplianceResult) ([]byte, error) 
 			Driver: SARIFDriver{
 				Name:           "PipelineConductor",
 				Version:        "0.1.0",
-				InformationURI: "https://github.com/grokify/pipelineconductor",
+				InformationURI: "https://github.com/plexusone/pipelineconductor",
 				Rules:          rules,
 			},
 		},

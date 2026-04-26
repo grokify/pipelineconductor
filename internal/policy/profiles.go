@@ -5,7 +5,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/grokify/pipelineconductor/pkg/model"
+	"github.com/plexusone/pipelineconductor/pkg/model"
 	"gopkg.in/yaml.v3"
 )
 

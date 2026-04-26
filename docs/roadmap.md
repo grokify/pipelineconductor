@@ -108,4 +108,4 @@ We welcome feedback on the roadmap:
 |---------|------|------------|
 | 0.1.0-dev | Current | Initial development |
 
-See [CHANGELOG](https://github.com/grokify/pipelineconductor/blob/main/CHANGELOG.md) for detailed release notes.
+See [CHANGELOG](https://github.com/plexusone/pipelineconductor/blob/main/CHANGELOG.md) for detailed release notes.

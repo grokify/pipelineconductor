@@ -33,7 +33,7 @@ PipelineConductor generates SARIF with:
         "driver": {
           "name": "PipelineConductor",
           "version": "0.1.0",
-          "informationUri": "https://github.com/grokify/pipelineconductor",
+          "informationUri": "https://github.com/plexusone/pipelineconductor",
           "rules": [
             {
               "id": "ci/workflow-required/has-workflow",
@@ -122,7 +122,7 @@ jobs:
           go-version: '1.25'
 
       - name: Install PipelineConductor
-        run: go install github.com/grokify/pipelineconductor/cmd/pipelineconductor@latest
+        run: go install github.com/plexusone/pipelineconductor/cmd/pipelineconductor@latest
 
       - name: Run compliance scan
         env:

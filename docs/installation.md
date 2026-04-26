@@ -12,7 +12,7 @@ PipelineConductor can be installed via Go install, from source, or using pre-bui
 The simplest way to install PipelineConductor:
 
 ```bash
-go install github.com/grokify/pipelineconductor/cmd/pipelineconductor@latest
+go install github.com/plexusone/pipelineconductor/cmd/pipelineconductor@latest
 ```
 
 This installs the `pipelineconductor` binary to your `$GOPATH/bin` directory.
@@ -22,7 +22,7 @@ This installs the `pipelineconductor` binary to your `$GOPATH/bin` directory.
 Clone and build the repository:
 
 ```bash
-git clone https://github.com/grokify/pipelineconductor.git
+git clone https://github.com/plexusone/pipelineconductor.git
 cd pipelineconductor
 go build -o pipelineconductor ./cmd/pipelineconductor
 ```
@@ -35,12 +35,12 @@ go install ./cmd/pipelineconductor
 
 ## Pre-built Binaries
 
-Download pre-built binaries from the [GitHub Releases](https://github.com/grokify/pipelineconductor/releases) page.
+Download pre-built binaries from the [GitHub Releases](https://github.com/plexusone/pipelineconductor/releases) page.
 
 === "Linux (amd64)"
 
     ```bash
-    curl -LO https://github.com/grokify/pipelineconductor/releases/latest/download/pipelineconductor_linux_amd64.tar.gz
+    curl -LO https://github.com/plexusone/pipelineconductor/releases/latest/download/pipelineconductor_linux_amd64.tar.gz
     tar xzf pipelineconductor_linux_amd64.tar.gz
     sudo mv pipelineconductor /usr/local/bin/
     ```
@@ -48,7 +48,7 @@ Download pre-built binaries from the [GitHub Releases](https://github.com/grokif
 === "macOS (arm64)"
 
     ```bash
-    curl -LO https://github.com/grokify/pipelineconductor/releases/latest/download/pipelineconductor_darwin_arm64.tar.gz
+    curl -LO https://github.com/plexusone/pipelineconductor/releases/latest/download/pipelineconductor_darwin_arm64.tar.gz
     tar xzf pipelineconductor_darwin_arm64.tar.gz
     sudo mv pipelineconductor /usr/local/bin/
     ```

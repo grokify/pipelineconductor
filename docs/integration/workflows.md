@@ -47,7 +47,7 @@ jobs:
           go-version: '1.25'
 
       - name: Install PipelineConductor
-        run: go install github.com/grokify/pipelineconductor/cmd/pipelineconductor@latest
+        run: go install github.com/plexusone/pipelineconductor/cmd/pipelineconductor@latest
 
       - name: Validate policies
         run: pipelineconductor validate policies/ --verbose
@@ -75,7 +75,7 @@ jobs:
           go-version: '1.25'
 
       - name: Install PipelineConductor
-        run: go install github.com/grokify/pipelineconductor/cmd/pipelineconductor@latest
+        run: go install github.com/plexusone/pipelineconductor/cmd/pipelineconductor@latest
 
       - name: Clone policy repo
         run: git clone https://github.com/myorg/ci-policies.git
@@ -122,7 +122,7 @@ jobs:
           go-version: '1.25'
 
       - name: Install PipelineConductor
-        run: go install github.com/grokify/pipelineconductor/cmd/pipelineconductor@latest
+        run: go install github.com/plexusone/pipelineconductor/cmd/pipelineconductor@latest
 
       - name: Validate policies
         run: pipelineconductor validate policies/ --verbose

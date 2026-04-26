@@ -1,4 +1,4 @@
-module github.com/grokify/pipelineconductor
+module github.com/plexusone/pipelineconductor
 
 go 1.26.0
 

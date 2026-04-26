@@ -96,7 +96,7 @@ pipelineconductor/
 # Run compliance scan
 pipelineconductor scan \
   --orgs grokify,otherorg \
-  --policy-repo github.com/grokify/pipelineconductor-policy@v1 \
+  --policy-repo github.com/plexusone/pipelineconductor-policy@v1 \
   --profile default \
   --output report.json \
   --format json,sarif,markdown
@@ -105,11 +105,11 @@ pipelineconductor scan \
 pipelineconductor remediate \
   --orgs grokify \
   --dry-run \
-  --policy-repo github.com/grokify/pipelineconductor-policy@v1
+  --policy-repo github.com/plexusone/pipelineconductor-policy@v1
 
 # Validate policies
 pipelineconductor validate \
-  --policy-repo github.com/grokify/pipelineconductor-policy@v1
+  --policy-repo github.com/plexusone/pipelineconductor-policy@v1
 
 # List repos and their compliance status
 pipelineconductor list \
@@ -126,7 +126,7 @@ orgs:
   - otherorg
 
 policy:
-  repo: github.com/grokify/pipelineconductor-policy
+  repo: github.com/plexusone/pipelineconductor-policy
   ref: v1
 
 defaults:

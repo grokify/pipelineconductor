@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/grokify/pipelineconductor/pkg/model"
+	"github.com/plexusone/pipelineconductor/pkg/model"
 )
 
 func TestParseFormat(t *testing.T) {

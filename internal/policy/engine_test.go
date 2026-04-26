@@ -3,7 +3,7 @@ package policy
 import (
 	"testing"
 
-	"github.com/grokify/pipelineconductor/pkg/model"
+	"github.com/plexusone/pipelineconductor/pkg/model"
 )
 
 func TestNewEngine(t *testing.T) {

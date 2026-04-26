@@ -22,13 +22,13 @@ PipelineConductor is a tool for managing CI/CD pipeline consistency across hundr
 ## Installation
 
 ```bash
-go install github.com/grokify/pipelineconductor/cmd/pipelineconductor@latest
+go install github.com/plexusone/pipelineconductor/cmd/pipelineconductor@latest
 ```
 
 Or build from source:
 
 ```bash
-git clone https://github.com/grokify/pipelineconductor.git
+git clone https://github.com/plexusone/pipelineconductor.git
 cd pipelineconductor
 go build -o pipelineconductor ./cmd/pipelineconductor
 ```
@@ -132,13 +132,13 @@ Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for gui
 
 MIT License - see [LICENSE](LICENSE) for details.
 
- [build-status-svg]: https://github.com/grokify/pipelineconductor/actions/workflows/ci.yaml/badge.svg?branch=main
- [build-status-url]: https://github.com/grokify/pipelineconductor/actions/workflows/ci.yaml
- [lint-status-svg]: https://github.com/grokify/pipelineconductor/actions/workflows/lint.yaml/badge.svg?branch=main
- [lint-status-url]: https://github.com/grokify/pipelineconductor/actions/workflows/lint.yaml
- [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/pipelineconductor
- [goreport-url]: https://goreportcard.com/report/github.com/grokify/pipelineconductor
- [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/grokify/pipelineconductor
- [docs-godoc-url]: https://pkg.go.dev/github.com/grokify/pipelineconductor
+ [build-status-svg]: https://github.com/plexusone/pipelineconductor/actions/workflows/ci.yaml/badge.svg?branch=main
+ [build-status-url]: https://github.com/plexusone/pipelineconductor/actions/workflows/ci.yaml
+ [lint-status-svg]: https://github.com/plexusone/pipelineconductor/actions/workflows/lint.yaml/badge.svg?branch=main
+ [lint-status-url]: https://github.com/plexusone/pipelineconductor/actions/workflows/lint.yaml
+ [goreport-svg]: https://goreportcard.com/badge/github.com/plexusone/pipelineconductor
+ [goreport-url]: https://goreportcard.com/report/github.com/plexusone/pipelineconductor
+ [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/plexusone/pipelineconductor
+ [docs-godoc-url]: https://pkg.go.dev/github.com/plexusone/pipelineconductor
  [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
- [license-url]: https://github.com/grokify/pipelineconductor/blob/master/LICENSE
+ [license-url]: https://github.com/plexusone/pipelineconductor/blob/master/LICENSE

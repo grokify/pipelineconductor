@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/grokify/pipelineconductor/pkg/model"
+	"github.com/plexusone/pipelineconductor/pkg/model"
 )
 
 // Format represents the output format for reports.

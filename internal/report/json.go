@@ -3,7 +3,7 @@ package report
 import (
 	"encoding/json"
 
-	"github.com/grokify/pipelineconductor/pkg/model"
+	"github.com/plexusone/pipelineconductor/pkg/model"
 )
 
 // JSONFormatter generates JSON reports.

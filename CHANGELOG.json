@@ -1,7 +1,7 @@
 {
   "ir_version": "1.0",
   "project": "PipelineConductor",
-  "repository": "https://github.com/grokify/pipelineconductor",
+  "repository": "https://github.com/plexusone/pipelineconductor",
   "versioning": "semver",
   "commit_convention": "conventional",
   "maintainers": ["grokify"],
