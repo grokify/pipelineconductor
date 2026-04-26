@@ -1,11 +1,59 @@
 {
-  "ir_version": "1.0",
+  "irVersion": "1.0",
   "project": "PipelineConductor",
   "repository": "https://github.com/plexusone/pipelineconductor",
   "versioning": "semver",
-  "commit_convention": "conventional",
+  "commitConvention": "conventional",
   "maintainers": ["grokify"],
   "releases": [
+    {
+      "version": "v0.2.0",
+      "date": "2026-04-25",
+      "highlights": [
+        { "description": "Workflow compliance checking against reference repositories with exact and equivalent matching" },
+        { "description": "Local filesystem collector for scanning repositories without GitHub API" },
+        { "description": "GitHub Action for CI/CD integration with compliance checks" },
+        { "description": "Automated workflow remediation with template-based generation" }
+      ],
+      "added": [
+        { "description": "Compliance check result model types (`CheckResult`, `CheckSummary`, `RepoCheckResult`)", "commit": "bc9f5cf" },
+        { "description": "Local filesystem collector with parallel scanning and language detection", "commit": "40c3f07" },
+        { "description": "Workflow compliance checker with reference repository matching", "commit": "c6a50b9" },
+        { "description": "HTML report formatter for compliance check results", "commit": "81981ef" },
+        { "description": "Markdown report formatter for compliance check results", "commit": "81981ef" },
+        { "description": "GitHub Action (`action.yaml`) for compliance checking in CI pipelines", "commit": "fcb8611" },
+        { "description": "JSON Schema for check result validation (`schema/check_result.schema.json`)", "commit": "585796d" },
+        { "description": "Cedar policy examples for workflow compliance (strict, gradual, base)", "commit": "1db9c44" },
+        { "description": "Workflow generator with templates for Go CI, lint, and CodeQL", "commit": "3a3d3c9" },
+        { "description": "Compliance context in policy evaluation (`ComplianceContext`)", "commit": "0b49253" },
+        { "description": "Multi-source repository collection (`ListUserRepos`, `ListReposMultiSource`)", "commit": "0b49253" }
+      ],
+      "changed": [
+        { "description": "**BREAKING**: Module path migrated from `github.com/grokify/pipelineconductor` to `github.com/plexusone/pipelineconductor`", "commit": "5757df5" }
+      ],
+      "documentation": [
+        { "description": "CLI documentation for `check`, `apply`, and `remediate` commands", "commit": "c1eeec0" },
+        { "description": "Dashboard and workflow example configurations", "commit": "f7390d7" },
+        { "description": "Compliance scan planning documents", "commit": "4dc1585" },
+        { "description": "MkDocs site URLs updated to plexusone organization", "commit": "19c37a1" },
+        { "description": "PlexusOne unified MkDocs theme with dark mode default", "commit": "90864b3" },
+        { "description": "README icons added to Features section", "commit": "f686343" },
+        { "description": "README shields updated", "commit": "b8c045e" },
+        { "description": "Release notes for v0.2.0", "commit": "56139e9" }
+      ],
+      "dependencies": [
+        { "description": "`github.com/google/go-github/v84` upgraded from v82 for gogithub compatibility", "commit": "43fd83e" },
+        { "description": "`github.com/cedar-policy/cedar-go` v1.6.0 (from v1.4.1)", "commit": "9d51d57" },
+        { "description": "`github.com/grokify/gogithub` v0.12.1 (from v0.7.0)", "commit": "865170a" },
+        { "description": "`github.com/grokify/mogo` v0.74.2 (from v0.72.7)", "commit": "d4a6307" },
+        { "description": "`golang.org/x/oauth2` v0.36.0", "commit": "0d4b015" }
+      ],
+      "internal": [
+        { "description": "CI workflows updated to shared workflows", "commit": "22dd50a" },
+        { "description": "Workflow filenames standardized", "commit": "8db95fd" },
+        { "description": "Batch workflow update script added", "commit": "21ad16e" }
+      ]
+    },
     {
       "version": "v0.1.0",
       "date": "2026-01-31",
@@ -61,7 +109,7 @@
         { "description": "`github.com/spf13/cobra` v1.10.2 for CLI framework", "commit": "202497d" },
         { "description": "`github.com/spf13/viper` v1.21.0 for configuration management", "commit": "202497d" }
       ],
-      "chores": [
+      "internal": [
         { "description": "Initial project setup with go.mod, LICENSE, and CI workflow", "commit": "202497d" },
         { "description": "Bump actions/checkout from 4 to 6", "commit": "e85adbb" },
         { "description": "Bump actions/setup-go from 5 to 6", "commit": "73a874f" },
