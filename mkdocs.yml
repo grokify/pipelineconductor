@@ -1,46 +1,44 @@
 site_name: PipelineConductor
 site_description: Orchestrate and harmonize multi-repo CI/CD pipelines with policy-driven automation
-site_url: https://plexusone.github.io/pipelineconductor/
+site_url: https://plexusone.github.io/pipelineconductor
 repo_url: https://github.com/plexusone/pipelineconductor
 repo_name: plexusone/pipelineconductor
 
 theme:
   name: material
+  custom_dir: docs/overrides
   palette:
-    - scheme: default
-      primary: indigo
-      accent: indigo
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
+    # Dark mode first (PlexusOne default)
     - scheme: slate
-      primary: indigo
-      accent: indigo
+      primary: custom
+      accent: custom
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
+    - scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
   features:
-    - navigation.tabs
     - navigation.sections
     - navigation.expand
     - navigation.top
     - search.highlight
     - content.code.copy
-    - content.tabs.link
 
-plugins:
-  - search
+extra_css:
+  - https://plexusone.dev/css/plexusone-mkdocs.css
 
 markdown_extensions:
-  - admonition
-  - pymdownx.details
-  - pymdownx.superfences
   - pymdownx.highlight:
       anchor_linenums: true
-  - pymdownx.inlinehilite
-  - pymdownx.snippets
+  - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
+  - admonition
+  - pymdownx.details
   - tables
   - toc:
       permalink: true
@@ -77,6 +75,7 @@ nav:
   - Development:
       - Contributing: contributing.md
       - Roadmap: roadmap.md
+  - API Reference: https://pkg.go.dev/github.com/plexusone/pipelineconductor
   - Releases:
       - v0.1.0: releases/v0.1.0.md
 
