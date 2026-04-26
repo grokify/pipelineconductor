@@ -1411,6 +1411,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#dashboard-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dashboard Generation
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1632,6 +1641,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#dashboard-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dashboard Generation
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1726,6 +1744,7 @@
 <li><strong>Local filesystem collector</strong> - Scan local repositories without GitHub API</li>
 <li><strong>GitHub Action</strong> - Reusable action for compliance checks in CI pipelines</li>
 <li><strong>Workflow remediation</strong> - Generate missing workflows from templates</li>
+<li><strong>Dashboard generation</strong> - Dashforge integration for visual compliance dashboards</li>
 <li><strong>HTML/Markdown reports</strong> - New report formats for compliance check results</li>
 </ul>
 <h2 id="new-features">New Features<a class="headerlink" href="#new-features" title="Permanent link">&para;</a></h2>
@@ -1828,14 +1847,28 @@
 </ul>
 <h3 id="json-schema">JSON Schema<a class="headerlink" href="#json-schema" title="Permanent link">&para;</a></h3>
 <p>Added JSON Schema validation for check results at <code>schema/check_result.schema.json</code>.</p>
+<h3 id="dashboard-generation">Dashboard Generation<a class="headerlink" href="#dashboard-generation" title="Permanent link">&para;</a></h3>
+<p>Generate interactive Dashforge dashboards from compliance check results:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">import</span><span class="w"> </span><span class="s">&quot;github.com/plexusone/pipelineconductor/internal/dashboard&quot;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1">// Generate dashboard from check results</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nx">db</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">dashboard</span><span class="p">.</span><span class="nx">GenerateComplianceDashboard</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;https://example.com/data.json&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Dashboard includes:</p>
+<ul>
+<li><strong>Metric widgets</strong> - Total repos, compliant/partial/non-compliant counts, compliance rate</li>
+<li><strong>Bar chart</strong> - Compliance rate by language</li>
+<li><strong>Pie chart</strong> - Repository distribution by language</li>
+<li><strong>Tables</strong> - Non-compliant repos and all repos with pagination</li>
+</ul>
 <h2 id="breaking-changes">Breaking Changes<a class="headerlink" href="#breaking-changes" title="Permanent link">&para;</a></h2>
 <h3 id="module-path-migration">Module Path Migration<a class="headerlink" href="#module-path-migration" title="Permanent link">&para;</a></h3>
 <p>The module path has changed from <code>github.com/grokify/pipelineconductor</code> to <code>github.com/plexusone/pipelineconductor</code>. Update your imports:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// Before</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">import</span><span class="w"> </span><span class="s">&quot;github.com/grokify/pipelineconductor/pkg/model&quot;</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1">// After</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="kn">import</span><span class="w"> </span><span class="s">&quot;github.com/plexusone/pipelineconductor/pkg/model&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// Before</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">import</span><span class="w"> </span><span class="s">&quot;github.com/grokify/pipelineconductor/pkg/model&quot;</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1">// After</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="kn">import</span><span class="w"> </span><span class="s">&quot;github.com/plexusone/pipelineconductor/pkg/model&quot;</span>
 </code></pre></div>
 <h2 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h2>
 <table>
@@ -1868,6 +1901,11 @@
 <td>Updated from v0.72.7</td>
 </tr>
 <tr>
+<td><code>github.com/plexusone/dashforge</code></td>
+<td>v0.1.0</td>
+<td>New - dashboard generation</td>
+</tr>
+<tr>
 <td><code>golang.org/x/oauth2</code></td>
 <td>v0.36.0</td>
 <td>Updated</td>
@@ -1875,12 +1913,12 @@
 </tbody>
 </table>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>go<span class="w"> </span>install<span class="w"> </span>github.com/plexusone/pipelineconductor/cmd/pipelineconductor@v0.2.0
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>go<span class="w"> </span>install<span class="w"> </span>github.com/plexusone/pipelineconductor/cmd/pipelineconductor@v0.2.0
 </code></pre></div>
 <p>Or build from source:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/plexusone/pipelineconductor.git
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nb">cd</span><span class="w"> </span>pipelineconductor
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>go<span class="w"> </span>build<span class="w"> </span>-o<span class="w"> </span>pipelineconductor<span class="w"> </span>./cmd/pipelineconductor
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/plexusone/pipelineconductor.git
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nb">cd</span><span class="w"> </span>pipelineconductor
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>go<span class="w"> </span>build<span class="w"> </span>-o<span class="w"> </span>pipelineconductor<span class="w"> </span>./cmd/pipelineconductor
 </code></pre></div>
 <h2 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1893,7 +1931,7 @@
 <p>See <a href="../../roadmap/">Roadmap</a> for planned features:</p>
 <ul>
 <li>v0.3.0: GitLab support</li>
-<li>v0.4.0: Dashboard and trend analysis</li>
+<li>v0.4.0: Trend analysis and historical tracking</li>
 <li>v0.5.0: PR-based remediation with auto-merge</li>
 </ul>
 
