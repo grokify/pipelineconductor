@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/google/go-github/v82/github"
+	"github.com/google/go-github/v84/github"
 	"github.com/grokify/gogithub/repo"
 	"github.com/grokify/mogo/net/http/retryhttp"
 	"golang.org/x/oauth2"

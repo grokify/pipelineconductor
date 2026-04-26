@@ -4,7 +4,7 @@ go 1.26.0
 
 require (
 	github.com/cedar-policy/cedar-go v1.6.0
-	github.com/google/go-github/v82 v82.0.0
+	github.com/google/go-github/v84 v84.0.0
 	github.com/grokify/gogithub v0.12.1
 	github.com/grokify/mogo v0.74.2
 	golang.org/x/oauth2 v0.36.0
@@ -12,7 +12,6 @@ require (
 )
 
 require (
-	github.com/google/go-github/v84 v84.0.0 // indirect
 	github.com/google/go-querystring v1.2.0 // indirect
 	github.com/huandu/xstrings v1.5.0 // indirect
 	github.com/kr/pretty v0.3.1 // indirect
